@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Schedule automation preview">
+  <rect width="960" height="540" fill="#f6f8fb"/>
+  <rect x="74" y="72" width="812" height="386" rx="10" fill="#ffffff" stroke="#d7dde5" stroke-width="2"/>
+  <rect x="74" y="72" width="812" height="58" rx="10" fill="#2563eb"/>
+  <text x="106" y="108" fill="#ffffff" font-family="Arial, sans-serif" font-size="26" font-weight="700">Manager Schedule Generator</text>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#1e2329">
+    <text x="106" y="168" font-weight="700">Date</text>
+    <text x="230" y="168" font-weight="700">Kondae</text>
+    <text x="410" y="168" font-weight="700">Starcity</text>
+    <text x="590" y="168" font-weight="700">Gunja</text>
+    <text x="740" y="168" font-weight="700">Score</text>
+  </g>
+  <g stroke="#d7dde5" stroke-width="2">
+    <line x1="94" y1="188" x2="866" y2="188"/>
+    <line x1="94" y1="246" x2="866" y2="246"/>
+    <line x1="94" y1="304" x2="866" y2="304"/>
+    <line x1="94" y1="362" x2="866" y2="362"/>
+    <line x1="94" y1="420" x2="866" y2="420"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#374151">
+    <text x="106" y="226">05/01</text>
+    <text x="230" y="226">Open / Daily / Night</text>
+    <text x="410" y="226">Open / Close</text>
+    <text x="590" y="226">Open / Close</text>
+    <text x="740" y="226" fill="#14845f" font-weight="700">valid</text>
+    <text x="106" y="284">05/02</text>
+    <text x="230" y="284">Fixed + Auto</text>
+    <text x="410" y="284">Auto</text>
+    <text x="590" y="284">Support</text>
+    <text x="740" y="284" fill="#a66b00" font-weight="700">rank 9</text>
+    <text x="106" y="342">05/03</text>
+    <text x="230" y="342">Night rule</text>
+    <text x="410" y="342">Balanced</text>
+    <text x="590" y="342">Balanced</text>
+    <text x="740" y="342" fill="#14845f" font-weight="700">checked</text>
+    <text x="106" y="400">Output</text>
+    <text x="230" y="400">3 store sheets</text>
+    <text x="410" y="400">summary sheet</text>
+    <text x="590" y="400">validation</text>
+    <text x="740" y="400" fill="#2563eb" font-weight="700">xlsx</text>
+  </g>
+</svg>

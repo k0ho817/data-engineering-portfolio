@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="CS foundation">
+  <rect width="960" height="540" fill="#f5f7fa"/>
+  <rect x="76" y="72" width="808" height="396" rx="10" fill="#ffffff" stroke="#d9e0ea" stroke-width="2"/>
+  <text x="116" y="132" fill="#17202a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Programming Foundation</text>
+  <text x="116" y="168" fill="#637083" font-family="Arial, sans-serif" font-size="18">algorithm practice + Python projects + CS coursework</text>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="700">
+    <circle cx="220" cy="290" r="78" fill="#eef4ff" stroke="#2158d0" stroke-width="2"/>
+    <text x="166" y="298" fill="#2158d0">Algorithm</text>
+    <circle cx="480" cy="290" r="78" fill="#f1fbf7" stroke="#11795d" stroke-width="2"/>
+    <text x="442" y="298" fill="#11795d">Python</text>
+    <circle cx="740" cy="290" r="78" fill="#fff7e8" stroke="#9b6500" stroke-width="2"/>
+    <text x="708" y="298" fill="#9b6500">CS Base</text>
+  </g>
+</svg>

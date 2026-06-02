@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>문경호 | 데이터 엔지니어링·분석 포트폴리오</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17202a;
+        --muted: #637083;
+        --soft: #f5f7fa;
+        --paper: #ffffff;
+        --line: #d9e0ea;
+        --blue: #2158d0;
+        --green: #11795d;
+        --gold: #9b6500;
+        --red: #b5414a;
+        --shadow: 0 14px 36px rgba(18, 31, 48, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 12px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .brand {
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 11px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .nav-links a:hover {
+        border-color: var(--line);
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 42px 22px 72px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+        gap: 34px;
+        align-items: stretch;
+        padding-bottom: 34px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 780px;
+        font-size: clamp(38px, 5.5vw, 62px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 22px 0 0;
+        max-width: 760px;
+        color: #3e4958;
+        font-size: 18px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .button {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 15px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--paper);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .button.primary {
+        border-color: var(--blue);
+        color: #ffffff;
+        background: var(--blue);
+      }
+
+      .summary-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: var(--paper);
+      }
+
+      .summary-panel img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: var(--soft);
+      }
+
+      .quick-summary {
+        padding: 18px;
+      }
+
+      .quick-summary h2 {
+        margin: 0 0 8px;
+        font-size: 20px;
+      }
+
+      .quick-summary ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #465263;
+        font-size: 14px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: var(--paper);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 22px;
+        line-height: 1.15;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .section-tabs {
+        position: sticky;
+        top: 59px;
+        z-index: 15;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 26px 0 0;
+        padding: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .tab-button {
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        color: var(--muted);
+        background: transparent;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .tab-button.active {
+        border-color: var(--blue);
+        color: var(--blue);
+        background: #eef4ff;
+      }
+
+      section.portfolio-section {
+        padding-top: 52px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.25fr);
+        gap: 22px;
+        align-items: end;
+        margin-bottom: 18px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.2;
+      }
+
+      .section-note {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .section-badge {
+        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border-radius: 999px;
+        color: var(--blue);
+        background: #eef4ff;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .project-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--paper);
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-2px);
+        border-color: #b9c6d8;
+        box-shadow: var(--shadow);
+      }
+
+      .project-media,
+      .project-card video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: var(--soft);
+      }
+
+      .project-body {
+        padding: 16px;
+      }
+
+      .project-type {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .project-card h3 {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.3;
+      }
+
+      .project-card p {
+        margin: 10px 0 0;
+        color: #485466;
+        font-size: 14px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+      }
+
+      .tag {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 9px;
+        background: #fbfcfe;
+        color: #374151;
+        font-size: 12px;
+      }
+
+      details {
+        margin-top: 14px;
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+      }
+
+      summary {
+        cursor: pointer;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .detail-list {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: #4f5c6d;
+        font-size: 13px;
+      }
+
+      .evidence {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .evidence span {
+        min-height: 32px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .fit-note {
+        margin-top: 18px;
+        border-left: 4px solid var(--green);
+        padding: 14px 16px;
+        background: #f1fbf7;
+        color: #285246;
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 54px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .section-head,
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-badge {
+          justify-self: start;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .section-tabs {
+          top: 82px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        main {
+          padding-top: 28px;
+        }
+
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .section-tabs,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav" aria-label="portfolio navigation">
+        <div class="brand">문경호 | Data Engineering & Analytics</div>
+        <div class="nav-links">
+          <a href="#engineering">데이터 엔지니어링</a>
+          <a href="#analytics">데이터 분석</a>
+          <a href="#others">기타 프로젝트</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="intro">
+        <div>
+          <p class="eyebrow">Data Engineering & Analytics</p>
+          <h1>데이터 흐름을 설계하고 분석으로 연결하는 엔지니어 문경호입니다</h1>
+          <p class="lead">
+            DBLAB 활동을 통해 Hadoop/Spark 기반 분산 처리, Ray/Kubernetes 실행 환경,
+            Python 전처리와 로그·CSV 변환 과정을 학습했습니다. Aquila 캡스톤에서는
+            YOLO 데이터셋, 모델 파일, 입력 영상, 탐지 결과를 함께 관리하며 ML 프로젝트에서
+            데이터가 준비되고 처리되고 검증되는 흐름을 경험했습니다.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#engineering">데이터 엔지니어링</a>
+            <a class="button" href="#analytics">데이터 분석</a>
+            <a class="button" href="#others">기타 프로젝트</a>
+          </div>
+          <div class="stats" aria-label="summary stats">
+            <div class="stat"><strong>Python</strong><span>전처리, 로그 변환, 자동화</span></div>
+            <div class="stat"><strong>Spark/Ray</strong><span>분산 처리와 K8s 실행 환경</span></div>
+            <div class="stat"><strong>Analysis</strong><span>시계열, 공공데이터, Vector 실험</span></div>
+            <div class="stat"><strong>ML Data</strong><span>YOLO 데이터셋과 결과 관리</span></div>
+          </div>
+        </div>
+        <aside class="summary-panel">
+          <img src="data-pipeline-preview.svg" alt="DBLAB data pipeline preview">
+          <div class="quick-summary">
+            <h2>보유 기술</h2>
+            <ul>
+              <li>Python, CSV/로그 처리, Excel 자동화, 데이터 전처리</li>
+              <li>Hadoop/Spark, Ray, Kubernetes Job, ConfigMap, RBAC</li>
+              <li>Prophet 시계열 분석, 공공데이터 분석, Vector DB 실험</li>
+              <li>YOLO 데이터셋 구조, 모델 산출물, 입력·결과 영상 관리</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <div class="section-tabs" aria-label="section controls">
+        <button class="tab-button active" type="button" data-target="engineering">데이터 엔지니어링</button>
+        <button class="tab-button" type="button" data-target="analytics">데이터 분석</button>
+        <button class="tab-button" type="button" data-target="others">기타 프로젝트</button>
+      </div>
+
+      <section id="engineering" class="portfolio-section" data-section="engineering">
+        <div class="section-head">
+          <div>
+            <h2>데이터 엔지니어링</h2>
+            <p class="section-note">대용량 처리 환경, ETL, 데이터셋 관리, 모델 출력 검증으로 이어지는 경험입니다.</p>
+          </div>
+          <span class="section-badge">Core Area</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <img class="project-media" src="data-pipeline-preview.svg" alt="Distributed data pipeline">
+            <div class="project-body">
+              <p class="project-type">DBLAB / Distributed Processing</p>
+              <h3>Ray·Spark·Kubernetes 실행 환경 실습</h3>
+              <p>Spark 전처리 Job, ConfigMap, RBAC, NFS PV/PVC, bootstrap script, runbook을 통해 분산 처리 실행 흐름을 학습했습니다.</p>
+              <div class="tags">
+                <span class="tag">Spark</span><span class="tag">Ray</span><span class="tag">Kubernetes</span><span class="tag">Batch</span>
+              </div>
+              <details open>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>데이터 처리 코드를 컨테이너/클러스터 환경에서 실행하는 구조를 학습했습니다.</li>
+                  <li>전처리 코드와 Kubernetes 리소스 파일을 함께 관리해 실행 단위를 이해했습니다.</li>
+                  <li>데이터엔지니어가 다루는 처리 코드, 실행 환경, 스토리지 구성을 함께 보았습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>RUNBOOK_K8S_SPARK.md</span>
+                  <span>preprocess.py</span>
+                  <span>spark-preprocess-job.yaml</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="csv-log-preview.svg" alt="Log to CSV processing">
+            <div class="project-body">
+              <p class="project-type">DBLAB / ETL</p>
+              <h3>로그·CSV 전처리 파이프라인</h3>
+              <p>DBLAB report의 로그 변환 코드와 trajectory CSV를 바탕으로 원천 로그를 분석 가능한 정형 데이터로 바꾸는 흐름을 다뤘습니다.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Log Parsing</span><span class="tag">CSV</span><span class="tag">Validation</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>비정형 로그를 CSV로 변환해 후속 분석에 사용할 수 있는 형태로 가공했습니다.</li>
+                  <li>trajectory 데이터처럼 시간 흐름이 있는 데이터를 파일 단위로 관리했습니다.</li>
+                  <li>ETL의 첫 단계인 원천 데이터 정리와 형식 표준화 경험으로 설명할 수 있습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>logToCSV.py</span>
+                  <span>trajectory.csv</span>
+                  <span>DBLAB report</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="aquila-preview.svg" alt="Aquila ML data pipeline">
+            <div class="project-body">
+              <p class="project-type">Aquila / ML Data Pipeline</p>
+              <h3>YOLO 비전 데이터셋·결과 관리</h3>
+              <p>데이터셋, 모델 파일, 학습/추론 코드, 테스트 영상, 탐지 결과 영상을 연결해 ML 프로젝트의 데이터 흐름을 관리했습니다.</p>
+              <div class="tags">
+                <span class="tag">YOLO</span><span class="tag">Dataset</span><span class="tag">Model Output</span><span class="tag">Result Review</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>모델 성능만이 아니라 입력 데이터, 모델 파일, 결과 산출물을 함께 관리했습니다.</li>
+                  <li>테스트 영상과 탐지 결과 영상을 비교하며 결과 검증 과정을 경험했습니다.</li>
+                  <li>데이터엔지니어 관점에서는 ML 데이터 파이프라인과 산출물 추적 경험으로 설명할 수 있습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>Aquila README</span>
+                  <span>train.py</span>
+                  <span>detector.py</span>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <div class="fit-note">
+          DBLAB에서 분산 처리 실행 환경과 Python 기반 전처리를 학습했고, Aquila에서는 ML 데이터셋과 결과 산출물을 파이프라인 관점으로 관리했습니다.
+        </div>
+      </section>
+
+      <section id="analytics" class="portfolio-section" data-section="analytics">
+        <div class="section-head">
+          <div>
+            <h2>데이터 분석</h2>
+            <p class="section-note">공공데이터, 시계열, 벡터 기반 실험처럼 분석 목적의 데이터셋을 다룬 경험을 묶었습니다.</p>
+          </div>
+          <span class="section-badge">Analysis Area</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <img class="project-media" src="time-series-preview.svg" alt="Prophet seasonality chart">
+            <div class="project-body">
+              <p class="project-type">DBLAB / Time Series</p>
+              <h3>Prophet 시계열 분석 실험</h3>
+              <p>seasonality, holiday, logistic growth 실험 코드와 결과 이미지를 남기며 시계열 데이터의 패턴 분해와 예측 흐름을 학습했습니다.</p>
+              <div class="tags">
+                <span class="tag">Prophet</span><span class="tag">Seasonality</span><span class="tag">Python</span>
+              </div>
+              <details open>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>시계열 분석에서 휴일, 계절성, 성장 제한 조건을 나누어 실험했습니다.</li>
+                  <li>코드와 결과 이미지를 함께 보관해 분석 재현성을 고려했습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>prophet_season.py</span>
+                  <span>prophet_holiday.py</span>
+                  <span>seasonality result</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="bike-analysis-preview.svg" alt="Public bike and weather data analysis">
+            <div class="project-body">
+              <p class="project-type">DBLAB / Public Data</p>
+              <h3>공공자전거·날씨 데이터 분석</h3>
+              <p>서울 공공자전거 월별 대여 이력과 날씨 데이터를 함께 다루며 분석용 데이터셋 구성과 탐색 분석을 수행했습니다.</p>
+              <div class="tags">
+                <span class="tag">Public Data</span><span class="tag">CSV</span><span class="tag">EDA</span><span class="tag">Notebook</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>월별 CSV 데이터를 결합해 분석 가능한 데이터셋으로 구성했습니다.</li>
+                  <li>날씨 데이터와 결합해 외부 요인이 수요에 미치는 영향을 분석하는 방향으로 접근했습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>report2 README</span>
+                  <span>analysis notebook</span>
+                  <span>weather_Seoul.csv</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="vector-preview.svg" alt="Vector DB experiment preview">
+            <div class="project-body">
+              <p class="project-type">DBLAB / Vector Experiment</p>
+              <h3>Vector DB·추천 데이터 실험</h3>
+              <p>ratings train/test 데이터와 vector notebook을 기반으로 벡터화된 데이터 표현과 검색·추천 실험의 기초를 다뤘습니다.</p>
+              <div class="tags">
+                <span class="tag">Vector</span><span class="tag">Ratings</span><span class="tag">Recommendation</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>정형 평점 데이터를 train/test로 나누어 실험 자산으로 관리했습니다.</li>
+                  <li>벡터 기반 검색과 추천 시스템으로 확장 가능한 분석 주제를 다뤘습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>vector.ipynb</span>
+                  <span>ratings_train.txt</span>
+                  <span>ratings_test.txt</span>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <div class="fit-note">
+          분석은 단발성 차트 생성이 아니라 데이터셋 구성, 실험 코드, 결과 이미지, 보고서 자료를 함께 남기는 방식으로 수행했습니다.
+        </div>
+      </section>
+
+      <section id="others" class="portfolio-section" data-section="others">
+        <div class="section-head">
+          <div>
+            <h2>기타 프로젝트</h2>
+            <p class="section-note">주 직무와 직접 관련도는 낮지만 문제 해결력, 자동화 감각, 개발 기초를 보여주는 프로젝트입니다.</p>
+          </div>
+          <span class="section-badge">Additional Work</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <img class="project-media" src="schedule-preview.svg" alt="Schedule automation preview">
+            <div class="project-body">
+              <p class="project-type">Automation</p>
+              <h3>매니저 스케줄 자동 생성기</h3>
+              <p>복잡한 근무 규칙을 설정, 생성 엔진, 후보 선택, 검증, Excel 출력 모듈로 분리한 Python 자동화 프로젝트입니다.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">openpyxl</span><span class="tag">Rules</span><span class="tag">Validation</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>운영 조건을 코드화하고 결과를 Excel로 산출하는 자동화 흐름을 만들었습니다.</li>
+                  <li>검증 모듈을 별도로 두어 결과 품질을 확인했습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>FILE_ROLES.txt</span>
+                  <span>schedule_engine.py</span>
+                  <span>schedule_validation.py</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="web-practice-preview.svg" alt="Web practice preview">
+            <div class="project-body">
+              <p class="project-type">Web Practice</p>
+              <h3>JavaScript·React·Node 실습</h3>
+              <p>JavaScript30, React Movie App, GraphQL Movie API, Node.js/Express 실습으로 API와 UI 데이터 흐름의 기본기를 쌓았습니다.</p>
+              <div class="tags">
+                <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">GraphQL</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>백엔드 API와 프론트엔드가 데이터를 주고받는 흐름을 학습했습니다.</li>
+                  <li>데이터 엔지니어링 업무에서 필요한 웹/API 이해의 기반으로 설명할 수 있습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>React Movie App</span>
+                  <span>MovieQL</span>
+                  <span>JavaScript30</span>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-media" src="cs-foundation-preview.svg" alt="CS foundation preview">
+            <div class="project-body">
+              <p class="project-type">Programming Foundation</p>
+              <h3>알고리즘·Python 게임·CS 기초</h3>
+              <p>CodeUp, Baekjoon, Pygame, C/Java/Linux/DB 수업 실습을 통해 개발 기초와 문제 해결 루틴을 쌓았습니다.</p>
+              <div class="tags">
+                <span class="tag">Algorithm</span><span class="tag">Python</span><span class="tag">C/Java</span><span class="tag">Linux</span>
+              </div>
+              <details>
+                <summary>주요 내용</summary>
+                <ul class="detail-list">
+                  <li>문제 풀이와 수업 실습을 통해 기본 자료구조, 제어 흐름, 파일 기반 작업에 익숙합니다.</li>
+                  <li>주요 프로젝트를 뒷받침하는 구현 체력으로 설명할 수 있습니다.</li>
+                </ul>
+                <div class="evidence">
+                  <span>CodeUp 100</span>
+                  <span>Baekjoon</span>
+                  <span>Pygame Project</span>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        문경호 데이터 엔지니어링·분석 포트폴리오 | 생성일: 2026-06-02
+      </footer>
+    </main>
+
+    <script>
+      const buttons = [...document.querySelectorAll(".tab-button")];
+      const sections = [...document.querySelectorAll(".portfolio-section")];
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = document.getElementById(button.dataset.target);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          buttons.forEach((button) => {
+            button.classList.toggle("active", button.dataset.target === visible.target.id);
+          });
+        },
+        { rootMargin: "-35% 0px -45% 0px", threshold: [0.1, 0.35, 0.6] }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    </script>
+  </body>
+</html>

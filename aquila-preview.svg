@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Aquila ML data pipeline">
+  <rect width="960" height="540" fill="#f5f7fa"/>
+  <rect x="74" y="72" width="812" height="386" rx="10" fill="#ffffff" stroke="#d9e0ea" stroke-width="2"/>
+  <text x="112" y="132" fill="#17202a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Aquila ML Data Pipeline</text>
+  <text x="112" y="168" fill="#637083" font-family="Arial, sans-serif" font-size="18">dataset -> model files -> test video -> detection output</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="122" y="236" width="142" height="96" rx="10" fill="#eef4ff" stroke="#2158d0"/>
+    <text x="154" y="276" fill="#2158d0" font-size="20" font-weight="700">Dataset</text>
+    <text x="154" y="304" fill="#637083" font-size="15">YOLO format</text>
+    <rect x="322" y="236" width="142" height="96" rx="10" fill="#f1fbf7" stroke="#11795d"/>
+    <text x="360" y="276" fill="#11795d" font-size="20" font-weight="700">Train</text>
+    <text x="360" y="304" fill="#637083" font-size="15">train.py</text>
+    <rect x="522" y="236" width="142" height="96" rx="10" fill="#fff7e8" stroke="#9b6500"/>
+    <text x="558" y="276" fill="#9b6500" font-size="20" font-weight="700">Detect</text>
+    <text x="558" y="304" fill="#637083" font-size="15">detector.py</text>
+    <rect x="722" y="236" width="142" height="96" rx="10" fill="#fff1f2" stroke="#b5414a"/>
+    <text x="752" y="276" fill="#b5414a" font-size="20" font-weight="700">Output</text>
+    <text x="752" y="304" fill="#637083" font-size="15">result video</text>
+    <path d="M266 284h52M466 284h52M666 284h52" stroke="#9aa8ba" stroke-width="4"/>
+  </g>
+</svg>

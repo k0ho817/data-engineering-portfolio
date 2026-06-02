@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Vector DB experiment">
+  <rect width="960" height="540" fill="#f5f7fa"/>
+  <rect x="76" y="72" width="808" height="396" rx="10" fill="#ffffff" stroke="#d9e0ea" stroke-width="2"/>
+  <text x="116" y="132" fill="#17202a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Vector Experiment</text>
+  <text x="116" y="168" fill="#637083" font-family="Arial, sans-serif" font-size="18">ratings train/test -> vector representation -> search/recommendation</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="130" y="220" width="160" height="92" rx="10" fill="#eef4ff" stroke="#2158d0"/>
+    <text x="166" y="258" fill="#2158d0" font-size="22" font-weight="700">ratings</text>
+    <text x="166" y="286" fill="#637083" font-size="15">train / test</text>
+    <rect x="400" y="220" width="160" height="92" rx="10" fill="#f1fbf7" stroke="#11795d"/>
+    <text x="434" y="258" fill="#11795d" font-size="22" font-weight="700">vectors</text>
+    <text x="434" y="286" fill="#637083" font-size="15">embedding</text>
+    <rect x="670" y="220" width="160" height="92" rx="10" fill="#fff7e8" stroke="#9b6500"/>
+    <text x="704" y="258" fill="#9b6500" font-size="22" font-weight="700">results</text>
+    <text x="704" y="286" fill="#637083" font-size="15">similarity</text>
+    <path d="M292 266h104" stroke="#9aa8ba" stroke-width="4"/>
+    <path d="M562 266h104" stroke="#9aa8ba" stroke-width="4"/>
+    <circle cx="260" cy="380" r="8" fill="#2158d0"/>
+    <circle cx="342" cy="368" r="8" fill="#11795d"/>
+    <circle cx="420" cy="396" r="8" fill="#9b6500"/>
+    <circle cx="504" cy="356" r="8" fill="#2158d0"/>
+    <circle cx="600" cy="388" r="8" fill="#11795d"/>
+    <circle cx="690" cy="350" r="8" fill="#9b6500"/>
+    <line x1="260" y1="380" x2="342" y2="368" stroke="#d9e0ea" stroke-width="2"/>
+    <line x1="342" y1="368" x2="420" y2="396" stroke="#d9e0ea" stroke-width="2"/>
+    <line x1="504" y1="356" x2="600" y2="388" stroke="#d9e0ea" stroke-width="2"/>
+    <line x1="600" y1="388" x2="690" y2="350" stroke="#d9e0ea" stroke-width="2"/>
+  </g>
+</svg>

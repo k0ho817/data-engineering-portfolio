@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="CSV and log processing">
+  <rect width="960" height="540" fill="#f6f8fb"/>
+  <rect x="76" y="76" width="812" height="388" rx="10" fill="#ffffff" stroke="#d7dde5" stroke-width="2"/>
+  <text x="112" y="130" fill="#1e2329" font-family="Arial, sans-serif" font-size="30" font-weight="700">Log / CSV Processing</text>
+  <g font-family="Arial, sans-serif" font-size="18">
+    <text x="112" y="188" fill="#667085">raw log</text>
+    <text x="112" y="226" fill="#1e2329">2024-06-20 13:42:11, sensor=trajectory, x=128, y=54</text>
+    <text x="112" y="264" fill="#1e2329">2024-06-20 13:42:12, sensor=trajectory, x=131, y=57</text>
+    <path d="M112 304h690" stroke="#d7dde5" stroke-width="2"/>
+    <text x="112" y="350" fill="#667085">normalized csv</text>
+    <text x="112" y="388" fill="#2563eb" font-weight="700">timestamp,source,x,y,status</text>
+    <text x="112" y="426" fill="#1e2329">2024-06-20T13:42:11,trajectory,128,54,valid</text>
+  </g>
+</svg>
