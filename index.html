@@ -158,12 +158,44 @@
         background: var(--paper);
       }
 
-      .summary-panel img {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
+      .profile-head {
+        display: grid;
+        grid-template-columns: 112px minmax(0, 1fr);
+        gap: 16px;
+        align-items: center;
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
         background: var(--soft);
+      }
+
+      .profile-photo {
+        display: block;
+        width: 112px;
+        aspect-ratio: 3 / 4;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        object-fit: cover;
+        object-position: center top;
+        background: #ffffff;
+      }
+
+      .profile-title {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .profile-role {
+        margin: 6px 0 0;
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .profile-desc {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 13px;
       }
 
       .quick-summary {
@@ -178,6 +210,41 @@
       .quick-summary ul {
         margin: 0;
         padding-left: 20px;
+        color: #465263;
+        font-size: 14px;
+      }
+
+      .history {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+
+      .history h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .history-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+      }
+
+      .history-item {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+      }
+
+      .history-year {
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .history-text {
         color: #465263;
         font-size: 14px;
       }
@@ -530,6 +597,24 @@
         .fit-note {
           font-size: 14px;
         }
+
+        .profile-head {
+          grid-template-columns: 88px minmax(0, 1fr);
+          gap: 12px;
+          padding: 14px;
+        }
+
+        .profile-photo {
+          width: 88px;
+        }
+
+        .profile-title {
+          font-size: 19px;
+        }
+
+        .history-item {
+          grid-template-columns: 62px minmax(0, 1fr);
+        }
       }
     </style>
   </head>
@@ -569,7 +654,14 @@
           </div>
         </div>
         <aside class="summary-panel">
-          <img src="data-pipeline-preview.svg" alt="DBLAB data pipeline preview">
+          <div class="profile-head">
+            <img class="profile-photo" src="profile.jpeg" alt="문경호 프로필 사진">
+            <div>
+              <h2 class="profile-title">문경호</h2>
+              <p class="profile-role">Data Engineering & Analytics</p>
+              <p class="profile-desc">컴퓨터공학 기반으로 데이터 처리, 분석, ML 데이터 관리 경험을 확장하고 있습니다.</p>
+            </div>
+          </div>
           <div class="quick-summary">
             <h2>보유 기술</h2>
             <ul>
@@ -578,6 +670,23 @@
               <li>Prophet 시계열 분석, 공공데이터 분석, Vector DB 실험</li>
               <li>YOLO 데이터셋 구조, 모델 산출물, 입력·결과 영상 관리</li>
             </ul>
+            <div class="history">
+              <h2>이력</h2>
+              <div class="history-list">
+                <div class="history-item">
+                  <div class="history-year">2018</div>
+                  <div class="history-text">서울 신현고등학교 졸업</div>
+                </div>
+                <div class="history-item">
+                  <div class="history-year">2026</div>
+                  <div class="history-text">국립한국교통대학교 컴퓨터공학과 졸업</div>
+                </div>
+                <div class="history-item">
+                  <div class="history-year">2024~</div>
+                  <div class="history-text">국립한국교통대학교 DBLAB 학부연구생과정 및 학사후연구원</div>
+                </div>
+              </div>
+            </div>
           </div>
         </aside>
       </section>
