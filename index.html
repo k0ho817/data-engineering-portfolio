@@ -113,7 +113,7 @@
       h1 {
         margin: 0;
         max-width: 720px;
-        font-size: clamp(34px, 4.8vw, 54px);
+        font-size: 46px;
         line-height: 1.12;
         letter-spacing: 0;
       }
@@ -122,7 +122,7 @@
         margin: 20px 0 0;
         max-width: 720px;
         color: #3e4958;
-        font-size: clamp(16px, 1.8vw, 18px);
+        font-size: 18px;
       }
 
       .actions {
@@ -348,7 +348,7 @@
 
       .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
 
@@ -373,9 +373,28 @@
         display: block;
         width: 100%;
         aspect-ratio: 16 / 9;
-        object-fit: cover;
+        object-fit: contain;
         background: var(--soft);
       }
+
+      .result-figure { margin: 0; border-bottom: 1px solid var(--line); }
+      .result-figure > a { display: block; background: white; cursor: zoom-in; }
+      .result-figure .project-media { aspect-ratio: 3 / 2; padding: 12px; background: white; }
+      figcaption { padding: 12px 18px; color: #485466; font-size: 13px; line-height: 1.6; }
+      figcaption strong { display: block; color: var(--ink); margin-bottom: 3px; }
+      .source-link { color: var(--blue); text-underline-offset: 3px; }
+      .record { padding: 18px; background: var(--soft); border-bottom: 1px solid var(--line); }
+      .record h4 { margin: 0 0 12px; font-size: 16px; }
+      .record dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; gap: 8px; font-size: 14px; }
+      .record dd { margin: 0; font-weight: 700; }
+      .image-dialog { width: min(1200px, 96vw); max-height: 94dvh; padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
+      .image-dialog::backdrop { background: rgba(0, 0, 0, .7); }
+      .image-dialog header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; }
+      .image-dialog h2 { font-size: 16px; margin: 0; }
+      .image-dialog button { width: 44px; height: 44px; flex-shrink: 0; font-size: 26px; cursor: pointer; background: white; border: 1px solid var(--line); border-radius: 6px; }
+      .image-dialog img { display: block; max-width: 100%; height: auto; margin: auto; }
+      :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project-card { transition: none; } }
 
       .project-body {
         padding: 18px;
@@ -708,11 +727,14 @@
 
         <div class="project-grid">
           <article class="project-card">
-            <img class="project-media" src="data-pipeline-preview.svg" alt="Distributed data pipeline">
+            <figure class="result-figure">
+              <a href="assets/distributed-throughput.png" data-lightbox><img class="project-media" src="assets/distributed-throughput.png" alt="분산 학습 평균 처리량: DDP 81.4, FSDP 79.0, MWMS 76.8 images/sec" loading="lazy"></a>
+              <figcaption><strong>분산 학습 실측 처리량</strong>DBLAB · 2026.05.21 · ImageNet1K / ViT-B/16 / GPU 3개 / 5 epoch. 동일 실험 조건의 관측값이며 프레임워크 구현 차이가 포함됩니다. <a class="source-link" href="assets/benchmark-summary.csv" download>측정 CSV</a></figcaption>
+            </figure>
             <div class="project-body">
               <p class="project-type">DBLAB / Distributed Processing</p>
-              <h3>Ray·Spark·Kubernetes 실행 환경 실습</h3>
-              <p>Spark 전처리 Job, ConfigMap, RBAC, NFS PV/PVC, bootstrap script, runbook을 통해 분산 처리 실행 흐름을 학습했습니다.</p>
+              <h3>분산 데이터 처리와 학습 실행 환경</h3>
+              <p>Spark 전처리 실행 환경을 구성하고, KubeRay에서 Parquet 데이터를 Ray Data로 읽어 학습 worker에 공급하는 파이프라인을 실험했습니다. DDP·FSDP·MWMS의 처리량과 실행 시간을 기록했습니다.</p>
               <div class="tags">
                 <span class="tag">Spark</span><span class="tag">Ray</span><span class="tag">Kubernetes</span><span class="tag">Batch</span>
               </div>
@@ -733,7 +755,10 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="csv-log-preview.svg" alt="Log to CSV processing">
+            <figure class="result-figure">
+              <a href="assets/trajectory-recorded.png" data-lightbox><img class="project-media" src="assets/trajectory-recorded.png" alt="trajectory.csv에서 추출한 버스 객체 790의 실제 기록 좌표와 시작·끝 지점" loading="lazy"></a>
+              <figcaption><strong>로그에서 추출한 객체 좌표 기록</strong>trajectory.csv의 첫 10,000행 중 bus / objectid 790의 좌표 231개를 재시각화했습니다. 미세한 좌표 변동과 측정 오차가 포함되며 보간·평활화하지 않았습니다. <a class="source-link" href="assets/trajectory-sample.csv" download>표본 CSV</a> · <a class="source-link" href="assets/trajectory-7.png">PPT의 필터 비교 원본</a></figcaption>
+            </figure>
             <div class="project-body">
               <p class="project-type">DBLAB / ETL</p>
               <h3>로그·CSV 전처리 파이프라인</h3>
@@ -758,7 +783,10 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="aquila-preview.svg" alt="Aquila ML data pipeline">
+            <figure class="result-figure">
+              <a href="assets/aquila-29.png" data-lightbox><img class="project-media" src="assets/aquila-29.png" alt="Aquila 발표 자료에 수록된 학습 손실과 검증 지표의 epoch별 추이" loading="lazy"></a>
+              <figcaption><strong>학습·검증 지표 기록</strong>Aquila 최종 발표 PPT · 6번 슬라이드에 수록된 원본 그래프. 데이터셋 내부 검증 결과입니다.</figcaption>
+            </figure>
             <div class="project-body">
               <p class="project-type">Aquila / ML Data Pipeline</p>
               <h3>YOLO 비전 데이터셋·결과 관리</h3>
@@ -799,10 +827,13 @@
 
         <div class="project-grid">
           <article class="project-card">
-            <img class="project-media" src="time-series-preview.svg" alt="Prophet seasonality chart">
+            <figure class="result-figure">
+              <a href="assets/prophet-components.png" data-lightbox><img class="project-media" src="assets/prophet-components.png" alt="Prophet 합성 데이터 실습의 추세, 연간 및 월간 성분 분해 결과" loading="lazy"></a>
+              <figcaption><strong>Prophet 성분 분해 실습 · 합성 데이터</strong>prophet_season.py에서 저장한 season2.png 원본. 난수로 생성한 720일 데이터의 학습 결과이며 실측 수요 분석은 아닙니다.</figcaption>
+            </figure>
             <div class="project-body">
               <p class="project-type">DBLAB / Time Series</p>
-              <h3>Prophet 시계열 분석 실험</h3>
+              <h3>Prophet 시계열 모델링 실습</h3>
               <p>seasonality, holiday, logistic growth 실험 코드와 결과 이미지를 남기며 시계열 데이터의 패턴 분해와 예측 흐름을 학습했습니다.</p>
               <div class="tags">
                 <span class="tag">Prophet</span><span class="tag">Seasonality</span><span class="tag">Python</span>
@@ -823,7 +854,10 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="bike-analysis-preview.svg" alt="Public bike and weather data analysis">
+            <figure class="result-figure">
+              <a href="assets/bike-result-0.png" data-lightbox><img class="project-media" src="assets/bike-result-0.png" alt="여의나루 따릉이 대여량의 실제값과 예측값 비교: 급증 구간의 오차와 일부 음수 예측이 나타남" loading="lazy"></a>
+              <figcaption><strong>따릉이 실제 대여량과 예측값 비교</strong>분석 노트북의 마지막 셀에 저장된 원본 출력. 급증 구간 오차와 일부 음수 예측이 남아 있어 추가 검증이 필요한 실험 결과입니다.</figcaption>
+            </figure>
             <div class="project-body">
               <p class="project-type">DBLAB / Public Data</p>
               <h3>공공자전거·날씨 데이터 분석</h3>
@@ -847,19 +881,23 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="vector-preview.svg" alt="Vector DB experiment preview">
+            <div class="record">
+              <h4>리뷰 임베딩 · 실행 기록</h4>
+              <dl><dt>처리된 리뷰</dt><dd>199,992건</dd><dt>임베딩 차원</dt><dd>768차원</dd><dt>저장 형식</dt><dd>Parquet</dd><dt>Flat 검색 1위 점수</dt><dd>0.8729</dd></dl>
+              <p>출처: vector.ipynb 저장 출력. 검색 점수는 단일 질의의 유사도이며 정확도 지표가 아닙니다.</p>
+            </div>
             <div class="project-body">
               <p class="project-type">DBLAB / Vector Experiment</p>
-              <h3>Vector DB·추천 데이터 실험</h3>
-              <p>ratings train/test 데이터와 vector notebook을 기반으로 벡터화된 데이터 표현과 검색·추천 실험의 기초를 다뤘습니다.</p>
+              <h3>한국어 리뷰 임베딩·유사도 검색</h3>
+              <p>한국어 영화 리뷰를 Ko-SBERT로 벡터화하고 Parquet에 저장했습니다. Faiss의 Flat·IVFFlat·IVFPQ·HNSW 색인으로 유사 리뷰 검색을 실험했습니다.</p>
               <div class="tags">
                 <span class="tag">Vector</span><span class="tag">Ratings</span><span class="tag">Recommendation</span>
               </div>
               <details>
                 <summary>주요 내용</summary>
                 <ul class="detail-list">
-                  <li>정형 평점 데이터를 train/test로 나누어 실험 자산으로 관리했습니다.</li>
-                  <li>벡터 기반 검색과 추천 시스템으로 확장 가능한 분석 주제를 다뤘습니다.</li>
+                  <li>Polars로 리뷰 텍스트를 정제하고 768차원 임베딩과 메타데이터를 함께 저장했습니다.</li>
+                  <li>동일 질의에 대한 색인별 검색 결과와 유사도 점수를 비교했습니다.</li>
                 </ul>
                 <div class="evidence">
                   <span>vector.ipynb</span>
@@ -887,7 +925,6 @@
 
         <div class="project-grid">
           <article class="project-card">
-            <img class="project-media" src="schedule-preview.svg" alt="Schedule automation preview">
             <div class="project-body">
               <p class="project-type">Automation</p>
               <h3>매니저 스케줄 자동 생성기</h3>
@@ -911,7 +948,6 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="web-practice-preview.svg" alt="Web practice preview">
             <div class="project-body">
               <p class="project-type">Web Practice</p>
               <h3>JavaScript·React·Node 실습</h3>
@@ -935,7 +971,6 @@
           </article>
 
           <article class="project-card">
-            <img class="project-media" src="cs-foundation-preview.svg" alt="CS foundation preview">
             <div class="project-body">
               <p class="project-type">Programming Foundation</p>
               <h3>알고리즘·Python 게임·CS 기초</h3>
@@ -961,11 +996,33 @@
       </section>
 
       <footer>
-        문경호 데이터 엔지니어링·분석 포트폴리오 | 생성일: 2026-06-02
+        문경호 데이터 엔지니어링·분석 포트폴리오 · <a href="ASSET_SOURCES.md">자료 출처</a>
       </footer>
     </main>
 
+    <dialog class="image-dialog" aria-labelledby="image-title">
+      <header><h2 id="image-title">프로젝트 결과</h2><form method="dialog"><button aria-label="닫기" title="닫기">&#215;</button></form></header>
+      <img alt="">
+      <p class="image-caption"></p>
+    </dialog>
     <script>
+      const imageDialog = document.querySelector('.image-dialog');
+      document.querySelectorAll('[data-lightbox]').forEach(link => {
+        link.addEventListener('click', event => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !imageDialog.showModal) return;
+          event.preventDefault();
+          const figure = link.closest('figure');
+          imageDialog.querySelector('img').src = link.href;
+          imageDialog.querySelector('img').alt = link.querySelector('img').alt;
+          imageDialog.querySelector('h2').textContent = figure.querySelector('strong').textContent;
+          imageDialog.querySelector('.image-caption').textContent = figure.querySelector('figcaption').textContent;
+          imageDialog.showModal();
+        });
+      });
+      imageDialog.addEventListener('click', event => {
+        const rect = imageDialog.getBoundingClientRect();
+        if (event.target === imageDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) imageDialog.close();
+      });
       const buttons = [...document.querySelectorAll(".tab-button")];
       const sections = [...document.querySelectorAll(".portfolio-section")];
 

@@ -1,0 +1,4 @@
+strategy,framework,duration_hms,duration_hours,avg_epoch_time_min,avg_images_per_sec,final_train_loss,final_val_loss,final_val_top1,internal_peak_alloc_mib,internal_peak_reserved_mib,external_per_gpu_peak_mib,external_cluster_peak_mib,external_avg_gpu_util_pct,memory_condition
+ddp,PyTorch,21h 56m 26s,21.940555555555555,262.42833333333334,81.3669907516571,4.7341,8.6039,0.001,11400.1,11492.0,11934.0,35776.0,76.96,short nvidia-smi
+fsdp,PyTorch,22h 32m 9s,22.535833333333333,270.37166666666667,78.97620045002206,4.6511,8.0709,0.0015,10739.6,11588.0,12030.0,36084.0,80.60153846153845,short nvidia-smi
+mwms,TensorFlow,23h 10m 38s,23.177222222222223,278.0693333333334,76.8,1.2186,3.4393,0.0007,6848.4,,8486.0,25452.0,6.666194121538608,full nvidia-smi + TF memory growth
