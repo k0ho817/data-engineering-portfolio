@@ -1,16 +1,31 @@
 # 포트폴리오 시각 자료 출처
 
+## 2026-09 개편에서 추가한 자료
+
+| 표시 자료                         | 출처·처리 방식                                                                                              |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| imagenet-pipeline.png             | gpu08의 ray_imagenet_bench/docs에 보관된 2026-04-28 원본 파이프라인 PNG. 바이트 수정 없이 복사              |
+| benchmark-statistics.csv          | storage_cp의 kuberay-benchmark/results/paper-statistics/training_wall_time_statistics.csv 복사              |
+| qlora-wall-time.png               | 위 통계 CSV의 E2B text-QLoRA 네 조건으로 재생성. 원본의 평균·CI·n을 사용. pipeline/plot_benchmark.py로 재현 |
+| benchmark-run-times.csv           | 성공 RUN_END에서 추출한 네 조건의 외부 실행 시간. 원본 로그 전체는 게시하지 않음                            |
+| bike-hourly-source.csv            | DBLAB/study/report2/code/data.csv의 dateTime, rental_count, temperature 세 열을 추출. 8,758행               |
+| bike-daily.csv, bike-quality.json | pipeline/load.py의 SQL 집계 및 검사 결과. 119,605건은 원천 대여 로그 재집계가 아닌 기존 시간별 CSV 합계     |
+
+기존 PNG 자산은 보관하되 현재 페이지에서는 대표 프로젝트에 해당하는 자료만 노출합니다. SQL 확장은 2026-09-16 신규 구현이며 과거 연구와 구분합니다.
+
+## 기존 자료
+
 모든 이미지는 보관 중인 실험 산출물, 발표 자료, 분석 노트북에서 추출하거나 실제 CSV 좌표를 다시 그린 결과입니다. 설명용 SVG와 임의 수치의 차트는 사용하지 않습니다.
 
-| 프로젝트 | 표시 자료 | 원본 출처 | 해석 범위 |
-| --- | --- | --- | --- |
-| 분산 처리 | distributed-throughput.png | DBLAB/test/final_report_20260521 2/avg_images_per_sec.png | ImageNet1K, ViT-B/16, GPU 3개, 5 epoch 실험. DDP 81.36699, FSDP 78.97620, MWMS 76.8 img/s. 프레임워크 차이가 포함됨 |
-| 로그·CSV | trajectory-recorded.png | DBLAB/study/report/trajectory.csv | 첫 10,000행에서 type=bus, objectid=790인 기록만 추출. 좌표 순서 그대로 표시하며 보간·필터링하지 않음. 전체 데이터의 대표성이나 필터 성능을 주장하지 않음 |
-| 로그·CSV 보조 자료 | trajectory-7.png | DBLAB/study/report/report2.pptx, 슬라이드 9, ppt/media/image7.png | 버스 1368의 필터 적용 전·후 원본 캡처. 메인 차트의 버스 790과 다른 객체 |
-| Aquila | aquila-29.png | Aquila_최종발표_최종.pptx, 슬라이드 6, ppt/media/image29.png | 발표 자료에 수록된 학습·검증 지표. 데이터셋 외부 일반화 성능을 의미하지 않음 |
-| Prophet | prophet-components.png | DBLAB/study/prophet/season2.png 및 prophet_season.py | seed=0, 난수로 생성한 720일 합성 데이터의 성분 분해 실습. 실제 관측 데이터 아님 |
-| 따릉이 | bike-result-0.png | DBLAB/study/report2/code/1826015문경호.ipynb, 셀 인덱스 32의 첫 PNG 출력 | 저장된 Actual vs Predicted 결과. 급증 구간의 오차와 음수 예측을 포함하며 성능 개선을 주장하지 않음 |
-| 벡터 검색 | HTML 실행 기록 | DBLAB/study/vector_db_report/data/vector.ipynb, 셀 인덱스 5·17 | 199,992개 리뷰, 768차원, Flat 검색 첫 결과 유사도 0.8729. 단일 질의 결과이며 정확도 아님 |
+| 프로젝트           | 표시 자료                  | 원본 출처                                                                | 해석 범위                                                                                                                                                |
+| ------------------ | -------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 분산 처리          | distributed-throughput.png | DBLAB/test/final_report_20260521 2/avg_images_per_sec.png                | ImageNet1K, ViT-B/16, GPU 3개, 5 epoch 실험. DDP 81.36699, FSDP 78.97620, MWMS 76.8 img/s. 프레임워크 차이가 포함됨                                      |
+| 로그·CSV           | trajectory-recorded.png    | DBLAB/study/report/trajectory.csv                                        | 첫 10,000행에서 type=bus, objectid=790인 기록만 추출. 좌표 순서 그대로 표시하며 보간·필터링하지 않음. 전체 데이터의 대표성이나 필터 성능을 주장하지 않음 |
+| 로그·CSV 보조 자료 | trajectory-7.png           | DBLAB/study/report/report2.pptx, 슬라이드 9, ppt/media/image7.png        | 버스 1368의 필터 적용 전·후 원본 캡처. 메인 차트의 버스 790과 다른 객체                                                                                  |
+| Aquila             | aquila-29.png              | Aquila*최종발표*최종.pptx, 슬라이드 6, ppt/media/image29.png             | 발표 자료에 수록된 학습·검증 지표. 데이터셋 외부 일반화 성능을 의미하지 않음                                                                             |
+| Prophet            | prophet-components.png     | DBLAB/study/prophet/season2.png 및 prophet_season.py                     | seed=0, 난수로 생성한 720일 합성 데이터의 성분 분해 실습. 실제 관측 데이터 아님                                                                          |
+| 따릉이             | bike-result-0.png          | DBLAB/study/report2/code/1826015문경호.ipynb, 셀 인덱스 32의 첫 PNG 출력 | 저장된 Actual vs Predicted 결과. 급증 구간의 오차와 음수 예측을 포함하며 성능 개선을 주장하지 않음                                                       |
+| 벡터 검색          | HTML 실행 기록             | DBLAB/study/vector_db_report/data/vector.ipynb, 셀 인덱스 5·17           | 199,992개 리뷰, 768차원, Flat 검색 첫 결과 유사도 0.8729. 단일 질의 결과이며 정확도 아님                                                                 |
 
 `benchmark-summary.csv`는 원본 `final_benchmark_summary.csv`를 그대로 복사한 파일입니다. `trajectory-sample.csv`는 궤적 차트에 사용한 모든 좌표를 담습니다. 다른 PNG는 재생성하거나 수정하지 않고 원본 바이트를 보존했습니다.
 

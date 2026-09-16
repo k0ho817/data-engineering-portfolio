@@ -1,0 +1,19 @@
+condition,observed_run_index,external_wall_seconds
+DDP DataLoader,1,89.0
+DDP DataLoader,2,87.0
+DDP DataLoader,3,89.0
+DDP DataLoader,4,88.0
+DDP DataLoader,5,88.0
+DDP Ray Data,1,90.0
+DDP Ray Data,2,94.0
+DDP Ray Data,3,90.0
+DDP Ray Data,4,89.0
+DDP Ray Data,5,91.0
+FSDP2 DataLoader,1,599.0
+FSDP2 DataLoader,2,573.0
+FSDP2 DataLoader,3,558.0
+FSDP2 DataLoader,4,567.0
+FSDP2 DataLoader,5,611.0
+FSDP2 Ray Data,1,567.0
+FSDP2 Ray Data,2,576.0
+FSDP2 Ray Data,3,580.0

@@ -1,0 +1,15 @@
+{
+  "source": "2023 hourly dataset; existing notebook export, not raw rentals",
+  "station": "yeouinaru_exit_1",
+  "timezone": "Asia/Seoul (source local timestamps)",
+  "expected_hours": 8760,
+  "observed_hours": 8758,
+  "rental_count": 119605,
+  "missing_hours": [
+    "2023-12-31 22:00:00",
+    "2023-12-31 23:00:00"
+  ],
+  "completeness_percent": 99.9772,
+  "status": "warning",
+  "identical_rerun": "pass"
+}

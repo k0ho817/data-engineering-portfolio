@@ -1,1054 +1,477 @@
 <!doctype html>
 <html lang="ko">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>문경호 | 데이터 엔지니어링·분석 포트폴리오</title>
-    <style>
-      :root {
-        color-scheme: light;
-        --ink: #17202a;
-        --muted: #637083;
-        --soft: #f5f7fa;
-        --paper: #ffffff;
-        --line: #d9e0ea;
-        --blue: #2158d0;
-        --green: #11795d;
-        --gold: #9b6500;
-        --red: #b5414a;
-        --shadow: 0 14px 36px rgba(18, 31, 48, 0.08);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: var(--ink);
-        background: var(--paper);
-        line-height: 1.65;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        border-bottom: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.94);
-        backdrop-filter: blur(14px);
-      }
-
-      .nav {
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 12px 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px;
-      }
-
-      .brand {
-        font-size: 15px;
-        font-weight: 800;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .nav-links a {
-        min-height: 34px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 11px;
-        border: 1px solid transparent;
-        border-radius: 6px;
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .nav-links a:hover {
-        border-color: var(--line);
-        color: var(--ink);
-        background: var(--soft);
-      }
-
-      main {
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 38px 24px 72px;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-        gap: 28px;
-        align-items: start;
-        padding-bottom: 30px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .eyebrow {
-        margin: 0 0 12px;
-        color: var(--blue);
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      h1 {
-        margin: 0;
-        max-width: 720px;
-        font-size: 46px;
-        line-height: 1.12;
-        letter-spacing: 0;
-      }
-
-      .lead {
-        margin: 20px 0 0;
-        max-width: 720px;
-        color: #3e4958;
-        font-size: 18px;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 26px;
-      }
-
-      .button {
-        min-height: 42px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 15px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        background: var(--paper);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      .button.primary {
-        border-color: var(--blue);
-        color: #ffffff;
-        background: var(--blue);
-      }
-
-      .summary-panel {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        overflow: hidden;
-        background: var(--paper);
-      }
-
-      .profile-head {
-        display: grid;
-        grid-template-columns: 112px minmax(0, 1fr);
-        gap: 16px;
-        align-items: center;
-        padding: 18px;
-        border-bottom: 1px solid var(--line);
-        background: var(--soft);
-      }
-
-      .profile-photo {
-        display: block;
-        width: 112px;
-        aspect-ratio: 3 / 4;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        object-fit: cover;
-        object-position: center top;
-        background: #ffffff;
-      }
-
-      .profile-title {
-        margin: 0;
-        font-size: 22px;
-        line-height: 1.25;
-      }
-
-      .profile-role {
-        margin: 6px 0 0;
-        color: var(--blue);
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      .profile-desc {
-        margin: 8px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .quick-summary {
-        padding: 18px;
-      }
-
-      .quick-summary h2 {
-        margin: 0 0 8px;
-        font-size: 20px;
-      }
-
-      .quick-summary ul {
-        margin: 0;
-        padding-left: 20px;
-        color: #465263;
-        font-size: 14px;
-      }
-
-      .history {
-        margin-top: 18px;
-        padding-top: 16px;
-        border-top: 1px solid var(--line);
-      }
-
-      .history h2 {
-        margin: 0 0 10px;
-        font-size: 20px;
-      }
-
-      .history-list {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-      }
-
-      .history-item {
-        display: grid;
-        grid-template-columns: 72px minmax(0, 1fr);
-        gap: 10px;
-        align-items: start;
-      }
-
-      .history-year {
-        color: var(--blue);
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .history-text {
-        color: #465263;
-        font-size: 14px;
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .stat {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 14px;
-        background: var(--paper);
-      }
-
-      .stat strong {
-        display: block;
-        font-size: 19px;
-        line-height: 1.15;
-      }
-
-      .stat span {
-        display: block;
-        margin-top: 5px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .section-tabs {
-        position: sticky;
-        top: 59px;
-        z-index: 15;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin: 26px 0 0;
-        padding: 8px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.94);
-        backdrop-filter: blur(12px);
-      }
-
-      .tab-button {
-        min-height: 42px;
-        border: 1px solid transparent;
-        border-radius: 6px;
-        color: var(--muted);
-        background: transparent;
-        font: inherit;
-        font-size: 14px;
-        font-weight: 800;
-        cursor: pointer;
-      }
-
-      .tab-button.active {
-        border-color: var(--blue);
-        color: var(--blue);
-        background: #eef4ff;
-      }
-
-      section.portfolio-section {
-        padding-top: 48px;
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 18px;
-        align-items: start;
-        margin-bottom: 18px;
-      }
-
-      h2 {
-        margin: 0;
-        font-size: 30px;
-        line-height: 1.2;
-      }
-
-      .section-note {
-        margin: 8px 0 0;
-        color: var(--muted);
-        font-size: 15px;
-      }
-
-      .section-badge {
-        justify-self: end;
-        display: inline-flex;
-        align-items: center;
-        min-height: 34px;
-        padding: 0 12px;
-        border-radius: 999px;
-        color: var(--blue);
-        background: #eef4ff;
-        font-size: 13px;
-        font-weight: 800;
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .project-card {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        overflow: hidden;
-        background: var(--paper);
-        display: flex;
-        flex-direction: column;
-        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-2px);
-        border-color: #b9c6d8;
-        box-shadow: var(--shadow);
-      }
-
-      .project-media,
-      .project-card video {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: contain;
-        background: var(--soft);
-      }
-
-      .result-figure { margin: 0; border-bottom: 1px solid var(--line); }
-      .result-figure > a { display: block; background: white; cursor: zoom-in; }
-      .result-figure .project-media { aspect-ratio: 3 / 2; padding: 12px; background: white; }
-      figcaption { padding: 12px 18px; color: #485466; font-size: 13px; line-height: 1.6; }
-      figcaption strong { display: block; color: var(--ink); margin-bottom: 3px; }
-      .source-link { color: var(--blue); text-underline-offset: 3px; }
-      .record { padding: 18px; background: var(--soft); border-bottom: 1px solid var(--line); }
-      .record h4 { margin: 0 0 12px; font-size: 16px; }
-      .record dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; gap: 8px; font-size: 14px; }
-      .record dd { margin: 0; font-weight: 700; }
-      .image-dialog { width: min(1200px, 96vw); max-height: 94dvh; padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
-      .image-dialog::backdrop { background: rgba(0, 0, 0, .7); }
-      .image-dialog header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; }
-      .image-dialog h2 { font-size: 16px; margin: 0; }
-      .image-dialog button { width: 44px; height: 44px; flex-shrink: 0; font-size: 26px; cursor: pointer; background: white; border: 1px solid var(--line); border-radius: 6px; }
-      .image-dialog img { display: block; max-width: 100%; height: auto; margin: auto; }
-      :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
-      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project-card { transition: none; } }
-
-      .project-body {
-        padding: 18px;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-      }
-
-      .project-type {
-        margin: 0 0 8px;
-        color: var(--blue);
-        font-size: 12px;
-        font-weight: 900;
-        text-transform: uppercase;
-      }
-
-      .project-card h3 {
-        margin: 0;
-        font-size: 19px;
-        line-height: 1.3;
-      }
-
-      .project-card p {
-        margin: 10px 0 0;
-        color: #485466;
-        font-size: 14px;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 14px;
-      }
-
-      .tag {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 4px 9px;
-        background: #fbfcfe;
-        color: #374151;
-        font-size: 12px;
-      }
-
-      details {
-        margin-top: 14px;
-        border-top: 1px solid var(--line);
-        padding-top: 12px;
-        margin-bottom: 0;
-      }
-
-      summary {
-        cursor: pointer;
-        color: var(--ink);
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .detail-list {
-        margin: 10px 0 0;
-        padding-left: 18px;
-        color: #4f5c6d;
-        font-size: 13px;
-      }
-
-      .evidence {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 12px;
-      }
-
-      .evidence span {
-        min-height: 32px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 10px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        color: var(--blue);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .fit-note {
-        margin-top: 18px;
-        border-left: 4px solid var(--green);
-        padding: 14px 16px;
-        background: #f1fbf7;
-        color: #285246;
-        font-size: 15px;
-      }
-
-      footer {
-        margin-top: 54px;
-        padding-top: 20px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      @media (max-width: 920px) {
-        .hero,
-        .section-head {
-          grid-template-columns: 1fr;
-        }
-
-        .section-badge {
-          justify-self: start;
-        }
-
-        .section-tabs {
-          top: 82px;
-        }
-      }
-
-      @media (max-width: 620px) {
-        .topbar {
-          position: static;
-        }
-
-        main {
-          padding: 24px 16px 56px;
-        }
-
-        .nav {
-          padding: 12px 16px;
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .nav-links {
-          width: 100%;
-          gap: 8px;
-        }
-
-        .nav-links a {
-          min-height: 32px;
-          padding: 0 9px;
-          font-size: 12px;
-          background: var(--soft);
-        }
-
-        h1 {
-          font-size: 32px;
-        }
-
-        .lead {
-          font-size: 16px;
-        }
-
-        .actions {
-          display: grid;
-          grid-template-columns: 1fr;
-        }
-
-        .button {
-          justify-content: center;
-          width: 100%;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-        }
-
-        .section-tabs {
-          position: sticky;
-          top: 0;
-          display: flex;
-          overflow-x: auto;
-          gap: 8px;
-          margin-inline: -16px;
-          padding: 8px 16px;
-          border-left: 0;
-          border-right: 0;
-          border-radius: 0;
-          scrollbar-width: none;
-        }
-
-        .section-tabs::-webkit-scrollbar {
-          display: none;
-        }
-
-        .tab-button {
-          min-width: max-content;
-          padding: 0 14px;
-          white-space: nowrap;
-        }
-
-        section.portfolio-section {
-          padding-top: 36px;
-        }
-
-        h2 {
-          font-size: 26px;
-        }
-
-        .section-badge {
-          min-height: 30px;
-          font-size: 12px;
-        }
-
-        .project-grid {
-          grid-template-columns: 1fr;
-          gap: 14px;
-        }
-
-        .project-body {
-          padding: 16px;
-        }
-
-        .project-card h3 {
-          font-size: 18px;
-        }
-
-        .project-card p,
-        .section-note,
-        .fit-note {
-          font-size: 14px;
-        }
-
-        .profile-head {
-          grid-template-columns: 88px minmax(0, 1fr);
-          gap: 12px;
-          padding: 14px;
-        }
-
-        .profile-photo {
-          width: 88px;
-        }
-
-        .profile-title {
-          font-size: 19px;
-        }
-
-        .history-item {
-          grid-template-columns: 62px minmax(0, 1fr);
-        }
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="문경호의 데이터 엔지니어 포트폴리오. DBLAB 분산 전처리, Parquet 데이터 파이프라인, KubeRay 실행 환경과 데이터 품질 검증."
+    />
+    <title>문경호 | 데이터 엔지니어</title>
+    <link rel="stylesheet" href="portfolio.css" />
   </head>
   <body>
+    <a class="skip-link" href="#engineering">프로젝트로 이동</a>
     <header class="topbar">
-      <nav class="nav" aria-label="portfolio navigation">
-        <div class="brand">문경호 | Data Engineering & Analytics</div>
-        <div class="nav-links">
-          <a href="#engineering">데이터 엔지니어링</a>
-          <a href="#analytics">데이터 분석</a>
-          <a href="#others">기타 프로젝트</a>
-        </div>
+      <a class="brand" href="#intro">문경호 <span>Data Engineer</span></a>
+      <nav aria-label="주 메뉴">
+        <a href="#engineering">데이터 엔지니어링</a
+        ><a href="#analytics">데이터 분석</a><a href="#others">기타 프로젝트</a>
       </nav>
     </header>
-
     <main>
-      <section class="hero" aria-label="intro">
-        <div>
-          <p class="eyebrow">Data Engineering & Analytics</p>
-          <h1>데이터 흐름을 설계하고 분석으로 연결하는 엔지니어 문경호입니다</h1>
-          <p class="lead">
-            DBLAB 활동을 통해 Hadoop/Spark 기반 분산 처리, Ray/Kubernetes 실행 환경,
-            Python 전처리와 로그·CSV 변환 과정을 학습했습니다. Aquila 캡스톤에서는
-            YOLO 데이터셋, 모델 파일, 입력 영상, 탐지 결과를 함께 관리하며 ML 프로젝트에서
-            데이터가 준비되고 처리되고 검증되는 흐름을 경험했습니다.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#engineering">데이터 엔지니어링</a>
-            <a class="button" href="#analytics">데이터 분석</a>
-            <a class="button" href="#others">기타 프로젝트</a>
-          </div>
-          <div class="stats" aria-label="summary stats">
-            <div class="stat"><strong>Python</strong><span>전처리, 로그 변환, 자동화</span></div>
-            <div class="stat"><strong>Spark/Ray</strong><span>분산 처리와 K8s 실행 환경</span></div>
-            <div class="stat"><strong>Analysis</strong><span>시계열, 공공데이터, Vector 실험</span></div>
-            <div class="stat"><strong>ML Data</strong><span>YOLO 데이터셋과 결과 관리</span></div>
+      <section id="intro" class="intro">
+        <div class="identity">
+          <img
+            src="profile.jpeg"
+            alt="문경호 프로필 사진"
+            width="88"
+            height="113"
+          />
+          <div>
+            <p class="eyebrow">DATA ENGINEER · DBLAB</p>
+            <h1>
+              데이터 파이프라인을 설계하고<br class="desktop-break" />
+              검증하는 엔지니어 문경호입니다.
+            </h1>
           </div>
         </div>
-        <aside class="summary-panel">
-          <div class="profile-head">
-            <img class="profile-photo" src="profile.jpeg" alt="문경호 프로필 사진">
+        <p class="lead">
+          DBLAB에서 이미지·로그·텍스트 데이터를 가공하고, 분산 환경에서 데이터를
+          공급하며 실행 결과를 검증했습니다. 데이터 형식과 처리 코드뿐 아니라
+          입력 병목, 실행 조건, 측정 지표를 함께 살펴봅니다.
+        </p>
+        <div class="intro-bottom">
+          <div class="skills" aria-label="주요 기술">
+            <span>Python</span><span>Ray · Kubernetes</span
+            ><span>Parquet · Polars</span><span>SQL · SQLite</span
+            ><span>Spark 실습</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/k0ho817">GitHub ↗</a
+            ><a href="https://github.com/k0ho817/data-engineering-portfolio"
+              >포트폴리오 소스 ↗</a
+            ><button type="button" id="print-page">인쇄 / PDF</button>
+          </div>
+        </div>
+        <details class="career">
+          <summary>학력 및 연구 이력</summary>
+          <dl>
+            <dt>2024–현재</dt>
+            <dd>국립한국교통대학교 DBLAB · 학부연구생과정 및 학사후연구원</dd>
+            <dt>2026</dt>
+            <dd>국립한국교통대학교 컴퓨터공학과 졸업</dd>
+            <dt>2018</dt>
+            <dd>서울 신현고등학교 졸업</dd>
+          </dl>
+        </details>
+      </section>
+      <section id="engineering" class="portfolio-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / DATA ENGINEERING</p>
+            <h2>데이터를 사용할 수 있는 형태로</h2>
+          </div>
+          <p>전처리, 데이터 공급, 실행 환경과 품질 검증</p>
+        </div>
+        <article id="dblab" class="featured">
+          <div class="project-heading">
+            <p class="meta">DBLAB · 2026년 연구 자료</p>
+            <h3>분산 전처리와 학습 데이터 파이프라인</h3>
+            <p>
+              같은 데이터를 여러 학습 방식에서 비교할 수 있도록 준비하고, 분산
+              실행의 입력량과 측정 조건을 관리했습니다.
+            </p>
+          </div>
+          <div class="project-facts">
             <div>
-              <h2 class="profile-title">문경호</h2>
-              <p class="profile-role">Data Engineering & Analytics</p>
-              <p class="profile-desc">컴퓨터공학 기반으로 데이터 처리, 분석, ML 데이터 관리 경험을 확장하고 있습니다.</p>
+              <span>데이터</span><strong>ImageNet1K</strong
+              ><small>학습 1,281,167장 · 검증 50,000장</small>
+            </div>
+            <div>
+              <span>처리 흐름</span><strong>이미지 → Parquet</strong
+              ><small>라벨·원본 경로·WNID 함께 저장</small>
+            </div>
+            <div>
+              <span>구현·실험 범위</span><strong>전처리 · 공급 · 관측</strong
+              ><small>연구 환경의 분산 실행과 결과 분석</small>
             </div>
           </div>
-          <div class="quick-summary">
-            <h2>보유 기술</h2>
+          <figure class="wide-figure">
+            <a href="assets/imagenet-pipeline.png" data-lightbox
+              ><img
+                src="assets/imagenet-pipeline.png"
+                width="8044"
+                height="2150"
+                alt="ImageNet 원본과 XML 라벨에서 Ray Data 전처리, Parquet, Ray Train, 결과 보고서로 이어지는 전체 파이프라인"
+            /></a>
+            <figcaption>
+              ImageNet 파이프라인 원본 설계도 · 2026.04.28 연구 자료. 이후
+              KubeRay 실험과는 데이터·모델·실행 조건을 구분했습니다.
+            </figcaption>
+          </figure>
+          <div class="case-columns">
+            <div>
+              <h4>문제와 설계</h4>
+              <p>
+                프레임워크마다 입력 전처리가 달라지면 학습 방식만 비교하기
+                어렵습니다. 이미지와 XML 라벨을 매핑하고 224×224 이미지의 PNG
+                바이트를 Parquet에 저장해 공통 입력으로 사용했습니다.
+              </p>
+              <p>
+                실행 결과는 rank별 JSONL, 요약 지표, 자원 관측값으로 남겨 CSV와
+                보고서로 연결했습니다.
+              </p>
+            </div>
+            <div>
+              <h4>다룬 문제</h4>
+              <ul>
+                <li>Parquet shard별 행 수 차이에 따른 rank별 batch 불균형</li>
+                <li>Ray Data 선읽기로 발생하는 불필요한 입력과 메모리 사용</li>
+                <li>다중 노드 GPU 배치와 측정 조건의 불일치</li>
+                <li>NVML GPU 식별 오류와 메모리 지표의 해석 차이</li>
+              </ul>
+            </div>
+          </div>
+          <details>
+            <summary>설계 판단과 검증 결과</summary>
+            <div class="detail-content">
+              <h4>작업에 필요한 만큼 읽기</h4>
+              <p>
+                KubeRay 결과 원장에는 선읽기 27.1k행·3.5GiB가 발생한 진단
+                실험에서 shard 내부 제한 읽기 적용 후 12행·약 61KiB로 줄어든
+                기록이 있습니다. 전체 데이터셋이나 모든 학습 작업에 적용되는
+                절감률로 일반화하지 않았습니다.
+              </p>
+              <h4>측정값의 의미를 분리하기</h4>
+              <p>
+                PyTorch allocated·reserved와 NVML 관측 메모리는 서로 다른
+                지표입니다. GPU index 대신 UUID를 사용한 관측 수정과, 잘못된
+                이전 관측값을 비교에서 제외한 과정을 기록했습니다.
+              </p>
+              <h4>실험의 경계</h4>
+              <p>
+                4월 ImageNet, 5월 ViT 비교, 8~9월 KubeRay 언어모델 실험은 서로
+                다른 실행입니다. 모델·GPU 수·토폴로지가 다른 결과를 하나의
+                개선율로 합치지 않습니다. 데이터 규모는 연구 문서에 기록된
+                값이며 상용 서비스 운영 실적이 아닙니다.
+              </p>
+            </div>
+          </details>
+          <div class="links">
+            <a
+              href="https://github.com/k0ho817/data-engineering-portfolio/blob/main/reports/dblab.md"
+              >상세 연구 기록 ↗</a
+            ><a href="#benchmark">성능·메모리 분석 ↓</a>
+          </div>
+        </article>
+        <div class="project-grid">
+          <article id="log-etl" class="project-card">
+            <p class="meta">DBLAB · 2024년 과제·발표 자료</p>
+            <h3>객체 로그 정제와 궤적 데이터 처리</h3>
+            <p class="project-summary">
+              객체 로그를 분석용 CSV로 바꾸며 인코딩, 객체 식별, 시간 처리
+              문제를 다뤘습니다.
+            </p>
+            <div class="skills">
+              <span>Python</span><span>JSON → CSV</span
+              ><span>Kalman filter</span>
+            </div>
+            <h4>처리와 검증</h4>
             <ul>
-              <li>Python, CSV/로그 처리, Excel 자동화, 데이터 전처리</li>
-              <li>Hadoop/Spark, Ray, Kubernetes Job, ConfigMap, RBAC</li>
-              <li>Prophet 시계열 분석, 공공데이터 분석, Vector DB 실험</li>
-              <li>YOLO 데이터셋 구조, 모델 산출물, 입력·결과 영상 관리</li>
+              <li>줄 단위 읽기와 JSON 추출, 인코딩·문자열 오류 처리</li>
+              <li>objectID·type·좌표·timestamp를 정형 데이터로 변환</li>
+              <li>동일 ID 재등장 문제와 필터 적용 전·후 결과 비교</li>
             </ul>
-            <div class="history">
-              <h2>이력</h2>
-              <div class="history-list">
-                <div class="history-item">
-                  <div class="history-year">2018</div>
-                  <div class="history-text">서울 신현고등학교 졸업</div>
-                </div>
-                <div class="history-item">
-                  <div class="history-year">2026</div>
-                  <div class="history-text">국립한국교통대학교 컴퓨터공학과 졸업</div>
-                </div>
-                <div class="history-item">
-                  <div class="history-year">2024~</div>
-                  <div class="history-text">국립한국교통대학교 DBLAB 학부연구생과정 및 학사후연구원</div>
+            <details>
+              <summary>원본 좌표와 결과 자료</summary>
+              <div class="detail-content">
+                <figure>
+                  <a href="assets/trajectory-recorded.png" data-lightbox
+                    ><img
+                      loading="lazy"
+                      src="assets/trajectory-recorded.png"
+                      width="1620"
+                      height="1080"
+                      alt="버스 객체 790의 원본 기록 좌표 231개"
+                  /></a>
+                  <figcaption>
+                    첫 10,000행 중 버스 790의 좌표 231개를 재시각화한
+                    표본입니다. 보간하지 않았으며 미세한 측정 오차가 포함됩니다.
+                  </figcaption>
+                </figure>
+                <div class="links">
+                  <a href="assets/trajectory-sample.csv" download>표본 CSV ↓</a
+                  ><a href="assets/trajectory-7.png">PPT 필터 비교 원본 ↗</a>
                 </div>
               </div>
+            </details>
+          </article>
+          <article id="vector" class="project-card">
+            <p class="meta">DBLAB · 저장된 노트북 실행 자료</p>
+            <h3>한국어 리뷰 임베딩·검색 데이터 구성</h3>
+            <p class="project-summary">
+              리뷰 텍스트를 정제하고 임베딩과 메타데이터를 함께 저장해 여러
+              색인에서 검색했습니다.
+            </p>
+            <div class="skills">
+              <span>Polars</span><span>Ko-SBERT</span
+              ><span>Faiss · Parquet</span>
             </div>
-          </div>
-        </aside>
+            <h4>구현·실험 범위</h4>
+            <ul>
+              <li>199,992개 리뷰의 768차원 임베딩 생성 기록</li>
+              <li>문서·라벨·ID·임베딩을 함께 Parquet에 저장</li>
+              <li>Flat·IVFFlat·IVFPQ·HNSW의 유사 리뷰 결과 비교</li>
+            </ul>
+            <details>
+              <summary>검색 결과의 해석</summary>
+              <div class="detail-content">
+                <p>
+                  Flat 색인의 단일 질의에서 첫 결과 유사도 0.8729를
+                  기록했습니다. 이 점수는 검색 정확도가 아닙니다. 색인별 품질을
+                  주장하려면 질의 집합과 Recall@k, 지연 시간·메모리 조건을
+                  추가로 정의해야 합니다.
+                </p>
+                <a
+                  href="https://github.com/k0ho817/data-engineering-portfolio/blob/main/reports/dblab.md"
+                  >자료와 범위 ↗</a
+                >
+              </div>
+            </details>
+          </article>
+        </div>
       </section>
-
-      <div class="section-tabs" aria-label="section controls">
-        <button class="tab-button active" type="button" data-target="engineering">데이터 엔지니어링</button>
-        <button class="tab-button" type="button" data-target="analytics">데이터 분석</button>
-        <button class="tab-button" type="button" data-target="others">기타 프로젝트</button>
-      </div>
-
-      <section id="engineering" class="portfolio-section" data-section="engineering">
-        <div class="section-head">
+      <section id="analytics" class="portfolio-section">
+        <div class="section-heading">
           <div>
-            <h2>데이터 엔지니어링</h2>
-            <p class="section-note">대용량 처리 환경, ETL, 데이터셋 관리, 모델 출력 검증으로 이어지는 경험입니다.</p>
+            <p class="eyebrow">02 / DATA ANALYSIS</p>
+            <h2>측정 결과를 판단의 근거로</h2>
           </div>
-          <span class="section-badge">Core Area</span>
+          <p>실험 조건, 반복 수, 데이터 품질을 함께 확인</p>
         </div>
-
-        <div class="project-grid">
-          <article class="project-card">
-            <figure class="result-figure">
-              <a href="assets/distributed-throughput.png" data-lightbox><img class="project-media" src="assets/distributed-throughput.png" alt="분산 학습 평균 처리량: DDP 81.4, FSDP 79.0, MWMS 76.8 images/sec" loading="lazy"></a>
-              <figcaption><strong>분산 학습 실측 처리량</strong>DBLAB · 2026.05.21 · ImageNet1K / ViT-B/16 / GPU 3개 / 5 epoch. 동일 실험 조건의 관측값이며 프레임워크 구현 차이가 포함됩니다. <a class="source-link" href="assets/benchmark-summary.csv" download>측정 CSV</a></figcaption>
-            </figure>
-            <div class="project-body">
-              <p class="project-type">DBLAB / Distributed Processing</p>
-              <h3>분산 데이터 처리와 학습 실행 환경</h3>
-              <p>Spark 전처리 실행 환경을 구성하고, KubeRay에서 Parquet 데이터를 Ray Data로 읽어 학습 worker에 공급하는 파이프라인을 실험했습니다. DDP·FSDP·MWMS의 처리량과 실행 시간을 기록했습니다.</p>
-              <div class="tags">
-                <span class="tag">Spark</span><span class="tag">Ray</span><span class="tag">Kubernetes</span><span class="tag">Batch</span>
-              </div>
-              <details open>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>데이터 처리 코드를 컨테이너/클러스터 환경에서 실행하는 구조를 학습했습니다.</li>
-                  <li>전처리 코드와 Kubernetes 리소스 파일을 함께 관리해 실행 단위를 이해했습니다.</li>
-                  <li>데이터엔지니어가 다루는 처리 코드, 실행 환경, 스토리지 구성을 함께 보았습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>RUNBOOK_K8S_SPARK.md</span>
-                  <span>preprocess.py</span>
-                  <span>spark-preprocess-job.yaml</span>
-                </div>
-              </details>
+        <article id="benchmark" class="analysis-project">
+          <p class="meta">
+            DBLAB · KubeRay 대표 프로젝트의 분석 결과 · 2026년 8~9월 자료
+          </p>
+          <h3>분산 실행의 시간·메모리 비교</h3>
+          <p>
+            동일한 대칭 2+2 GPU 조건의 text-QLoRA 실험에서 실행 방식과 입력
+            경로를 비교했습니다. 외부 실행 시간, step 시간, GPU 메모리를 각각
+            구분해 해석했습니다.
+          </p>
+          <figure>
+            <a href="assets/qlora-wall-time.png" data-lightbox
+              ><img
+                loading="lazy"
+                src="assets/qlora-wall-time.png"
+                width="1800"
+                height="828"
+                alt="네 QLoRA 조건의 외부 실행 시간 평균과 95% 신뢰구간. DDP 88.2·90.8초, FSDP2 581.6·574.3초"
+            /></a>
+            <figcaption>
+              통계 CSV에서 비교 가능한 네 조건을 다시 시각화했습니다. 성공
+              실행의 외부 wall-time 기준이며 오차선은 95% 신뢰구간입니다.
+            </figcaption>
+          </figure>
+          <div class="case-columns">
+            <div>
+              <h4>관측 결과</h4>
+              <p>
+                DataLoader 조건에서 보고된 PyTorch peak는 DDP 20.62 → FSDP2
+                15.81 GiB/GPU로 감소했습니다. 반면 평균 step은 0.911 →
+                17.898초로 증가해 메모리와 속도의 상충 관계가 나타났습니다.
+              </p>
             </div>
-          </article>
-
-          <article class="project-card">
-            <figure class="result-figure">
-              <a href="assets/trajectory-recorded.png" data-lightbox><img class="project-media" src="assets/trajectory-recorded.png" alt="trajectory.csv에서 추출한 버스 객체 790의 실제 기록 좌표와 시작·끝 지점" loading="lazy"></a>
-              <figcaption><strong>로그에서 추출한 객체 좌표 기록</strong>trajectory.csv의 첫 10,000행 중 bus / objectid 790의 좌표 231개를 재시각화했습니다. 미세한 좌표 변동과 측정 오차가 포함되며 보간·평활화하지 않았습니다. <a class="source-link" href="assets/trajectory-sample.csv" download>표본 CSV</a> · <a class="source-link" href="assets/trajectory-7.png">PPT의 필터 비교 원본</a></figcaption>
-            </figure>
-            <div class="project-body">
-              <p class="project-type">DBLAB / ETL</p>
-              <h3>로그·CSV 전처리 파이프라인</h3>
-              <p>DBLAB report의 로그 변환 코드와 trajectory CSV를 바탕으로 원천 로그를 분석 가능한 정형 데이터로 바꾸는 흐름을 다뤘습니다.</p>
-              <div class="tags">
-                <span class="tag">Python</span><span class="tag">Log Parsing</span><span class="tag">CSV</span><span class="tag">Validation</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>비정형 로그를 CSV로 변환해 후속 분석에 사용할 수 있는 형태로 가공했습니다.</li>
-                  <li>trajectory 데이터처럼 시간 흐름이 있는 데이터를 파일 단위로 관리했습니다.</li>
-                  <li>ETL의 첫 단계인 원천 데이터 정리와 형식 표준화 경험으로 설명할 수 있습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>logToCSV.py</span>
-                  <span>trajectory.csv</span>
-                  <span>DBLAB report</span>
-                </div>
-              </details>
+            <div>
+              <h4>검증과 한계</h4>
+              <p>
+                네 조건의 외부 시간 평균을 성공 실행 로그와 대조했습니다. Ray
+                Data FSDP2는 학습 결과 5회 중 외부 타이머가 있는 3회만 시간
+                통계에 포함했습니다. step·메모리는 원 보고서 집계값이며 모델
+                품질 우위를 의미하지 않습니다.
+              </p>
             </div>
-          </article>
-
-          <article class="project-card">
-            <figure class="result-figure">
-              <a href="assets/aquila-29.png" data-lightbox><img class="project-media" src="assets/aquila-29.png" alt="Aquila 발표 자료에 수록된 학습 손실과 검증 지표의 epoch별 추이" loading="lazy"></a>
-              <figcaption><strong>학습·검증 지표 기록</strong>Aquila 최종 발표 PPT · 6번 슬라이드에 수록된 원본 그래프. 데이터셋 내부 검증 결과입니다.</figcaption>
-            </figure>
-            <div class="project-body">
-              <p class="project-type">Aquila / ML Data Pipeline</p>
-              <h3>YOLO 비전 데이터셋·결과 관리</h3>
-              <p>데이터셋, 모델 파일, 학습/추론 코드, 테스트 영상, 탐지 결과 영상을 연결해 ML 프로젝트의 데이터 흐름을 관리했습니다.</p>
-              <div class="tags">
-                <span class="tag">YOLO</span><span class="tag">Dataset</span><span class="tag">Model Output</span><span class="tag">Result Review</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>모델 성능만이 아니라 입력 데이터, 모델 파일, 결과 산출물을 함께 관리했습니다.</li>
-                  <li>테스트 영상과 탐지 결과 영상을 비교하며 결과 검증 과정을 경험했습니다.</li>
-                  <li>데이터엔지니어 관점에서는 ML 데이터 파이프라인과 산출물 추적 경험으로 설명할 수 있습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>Aquila README</span>
-                  <span>train.py</span>
-                  <span>detector.py</span>
-                </div>
-              </details>
+          </div>
+          <div class="links">
+            <a href="assets/benchmark-statistics.csv" download>통계 CSV ↓</a
+            ><a
+              href="https://github.com/k0ho817/data-engineering-portfolio/blob/main/reports/dblab.md"
+              >실험 조건·분석 기록 ↗</a
+            >
+          </div>
+        </article>
+        <article id="bike" class="analysis-project">
+          <p class="meta">DBLAB 따릉이 분석 · SQL 확장 2026.09</p>
+          <h3>따릉이·날씨 분석과 SQL 데이터 품질 검증</h3>
+          <p>
+            여의나루역 대여소의 시간별 수요와 날씨를 결합한 분석 데이터를
+            대상으로, 집계 단위와 누락을 확인하고 재실행 가능한 SQL 마트로
+            확장했습니다.
+          </p>
+          <div class="project-facts">
+            <div>
+              <span>가공 데이터</span><strong>8,758시간</strong
+              ><small>2023년 · 여의나루역 1번출구 앞</small>
             </div>
-          </article>
-        </div>
-
-        <div class="fit-note">
-          DBLAB에서 분산 처리 실행 환경과 Python 기반 전처리를 학습했고, Aquila에서는 ML 데이터셋과 결과 산출물을 파이프라인 관점으로 관리했습니다.
-        </div>
+            <div>
+              <span>대여량 합계</span><strong>119,605건</strong
+              ><small>기존 노트북 export 기준</small>
+            </div>
+            <div>
+              <span>품질 검사</span><strong class="warning">2시간 누락</strong
+              ><small>12월 31일 22시·23시</small>
+            </div>
+          </div>
+          <div class="case-columns">
+            <div>
+              <h4>분석용 데이터 모델</h4>
+              <p>
+                대여소 차원 테이블, 대여소·시간 복합키를 가진 사실 테이블, 일별
+                대여량·관측 시간 수·평균 기온을 계산하는 SQL 뷰로 구성했습니다.
+              </p>
+              <p>누락 시간은 대여량 0건과 구분하고 품질 경고로 남겼습니다.</p>
+            </div>
+            <div>
+              <h4>재실행·입력 검증</h4>
+              <ul>
+                <li>동일 CSV를 두 번 적재해도 전체 저장 행의 해시가 동일</li>
+                <li>수정 시간대는 UPSERT로 갱신하고 다른 시간대는 보존</li>
+                <li>중복 시간·음수·비정수·NaN 대여량 거부</li>
+                <li>잘못된 배치가 기존 데이터를 부분 변경하지 않음</li>
+              </ul>
+            </div>
+          </div>
+          <p class="scope-note">
+            SQL 마트는 기존 연구 이후 2026.09에 Codex와 함께 추가하고 로컬에서
+            검증한 확장 구현입니다. 원천 대여 이력 전체의 재검증이나 상용
+            운영·스케줄링까지 포함하지 않습니다.
+          </p>
+          <details>
+            <summary>기존 예측 실험 결과</summary>
+            <div class="detail-content">
+              <figure>
+                <a href="assets/bike-result-0.png" data-lightbox
+                  ><img
+                    loading="lazy"
+                    src="assets/bike-result-0.png"
+                    width="1008"
+                    height="547"
+                    alt="따릉이 실제 대여량과 예측값의 비교"
+                /></a>
+                <figcaption>
+                  원본 노트북 출력. 급증 구간 오차와 일부 음수 예측이 남아
+                  있습니다. 시간 기준 검증과 기준 모델 비교를 완료한 예측
+                  서비스로 제시하지 않습니다.
+                </figcaption>
+              </figure>
+            </div>
+          </details>
+          <div class="links">
+            <a
+              href="https://github.com/k0ho817/data-engineering-portfolio/tree/main/pipeline"
+              >SQL·구현·검증 코드 ↗</a
+            ><a href="assets/bike-quality.json">품질 검사 결과 ↗</a
+            ><a href="assets/bike-daily.csv" download>일별 집계 CSV ↓</a
+            ><a href="assets/bike-hourly-source.csv" download
+              >시간별 입력 CSV ↓</a
+            >
+          </div>
+        </article>
       </section>
-
-      <section id="analytics" class="portfolio-section" data-section="analytics">
-        <div class="section-head">
+      <section id="others" class="portfolio-section">
+        <div class="section-heading">
           <div>
-            <h2>데이터 분석</h2>
-            <p class="section-note">공공데이터, 시계열, 벡터 기반 실험처럼 분석 목적의 데이터셋을 다룬 경험을 묶었습니다.</p>
+            <p class="eyebrow">03 / ADDITIONAL PROJECTS</p>
+            <h2>협업과 구현 경험</h2>
           </div>
-          <span class="section-badge">Analysis Area</span>
+          <p>ML 데이터 관리와 업무 자동화</p>
         </div>
-
         <div class="project-grid">
-          <article class="project-card">
-            <figure class="result-figure">
-              <a href="assets/prophet-components.png" data-lightbox><img class="project-media" src="assets/prophet-components.png" alt="Prophet 합성 데이터 실습의 추세, 연간 및 월간 성분 분해 결과" loading="lazy"></a>
-              <figcaption><strong>Prophet 성분 분해 실습 · 합성 데이터</strong>prophet_season.py에서 저장한 season2.png 원본. 난수로 생성한 720일 데이터의 학습 결과이며 실측 수요 분석은 아닙니다.</figcaption>
-            </figure>
-            <div class="project-body">
-              <p class="project-type">DBLAB / Time Series</p>
-              <h3>Prophet 시계열 모델링 실습</h3>
-              <p>seasonality, holiday, logistic growth 실험 코드와 결과 이미지를 남기며 시계열 데이터의 패턴 분해와 예측 흐름을 학습했습니다.</p>
-              <div class="tags">
-                <span class="tag">Prophet</span><span class="tag">Seasonality</span><span class="tag">Python</span>
-              </div>
-              <details open>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>시계열 분석에서 휴일, 계절성, 성장 제한 조건을 나누어 실험했습니다.</li>
-                  <li>코드와 결과 이미지를 함께 보관해 분석 재현성을 고려했습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>prophet_season.py</span>
-                  <span>prophet_holiday.py</span>
-                  <span>seasonality result</span>
-                </div>
-              </details>
+          <article id="aquila" class="project-card">
+            <p class="meta">Aquila · 팀 캡스톤 · 2025년 발표 자료</p>
+            <h3>비전 데이터셋과 학습 산출물 관리</h3>
+            <p>
+              팀 캡스톤에서 학습 데이터, 모델 파일, 테스트 입력과 결과 산출물을
+              다뤘습니다. 입력과 결과를 연결해 검토하는 경험을 쌓았습니다.
+            </p>
+            <div class="skills">
+              <span>Python</span><span>YOLO</span><span>Dataset</span>
             </div>
+            <details>
+              <summary>발표 자료의 학습·검증 기록</summary>
+              <div class="detail-content">
+                <figure>
+                  <a href="assets/aquila-29.png" data-lightbox
+                    ><img
+                      loading="lazy"
+                      src="assets/aquila-29.png"
+                      width="870"
+                      height="435"
+                      alt="Aquila 발표 자료의 학습 손실과 검증 지표"
+                  /></a>
+                  <figcaption>
+                    최종 발표 6번 슬라이드의 원본 이미지. 팀 프로젝트의 데이터셋
+                    내부 검증 결과입니다.
+                  </figcaption>
+                </figure>
+              </div>
+            </details>
           </article>
-
           <article class="project-card">
-            <figure class="result-figure">
-              <a href="assets/bike-result-0.png" data-lightbox><img class="project-media" src="assets/bike-result-0.png" alt="여의나루 따릉이 대여량의 실제값과 예측값 비교: 급증 구간의 오차와 일부 음수 예측이 나타남" loading="lazy"></a>
-              <figcaption><strong>따릉이 실제 대여량과 예측값 비교</strong>분석 노트북의 마지막 셀에 저장된 원본 출력. 급증 구간 오차와 일부 음수 예측이 남아 있어 추가 검증이 필요한 실험 결과입니다.</figcaption>
-            </figure>
-            <div class="project-body">
-              <p class="project-type">DBLAB / Public Data</p>
-              <h3>공공자전거·날씨 데이터 분석</h3>
-              <p>서울 공공자전거 월별 대여 이력과 날씨 데이터를 함께 다루며 분석용 데이터셋 구성과 탐색 분석을 수행했습니다.</p>
-              <div class="tags">
-                <span class="tag">Public Data</span><span class="tag">CSV</span><span class="tag">EDA</span><span class="tag">Notebook</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>월별 CSV 데이터를 결합해 분석 가능한 데이터셋으로 구성했습니다.</li>
-                  <li>날씨 데이터와 결합해 외부 요인이 수요에 미치는 영향을 분석하는 방향으로 접근했습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>report2 README</span>
-                  <span>analysis notebook</span>
-                  <span>weather_Seoul.csv</span>
-                </div>
-              </details>
+            <p class="meta">Python 업무 자동화</p>
+            <h3>매니저 스케줄 자동 생성기</h3>
+            <p>
+              근무 규칙을 코드로 표현하고, 스케줄 생성·후보 선택·검증·Excel
+              출력을 모듈로 분리했습니다.
+            </p>
+            <div class="skills">
+              <span>Python</span><span>openpyxl</span><span>Validation</span>
             </div>
-          </article>
-
-          <article class="project-card">
-            <div class="record">
-              <h4>리뷰 임베딩 · 실행 기록</h4>
-              <dl><dt>처리된 리뷰</dt><dd>199,992건</dd><dt>임베딩 차원</dt><dd>768차원</dd><dt>저장 형식</dt><dd>Parquet</dd><dt>Flat 검색 1위 점수</dt><dd>0.8729</dd></dl>
-              <p>출처: vector.ipynb 저장 출력. 검색 점수는 단일 질의의 유사도이며 정확도 지표가 아닙니다.</p>
-            </div>
-            <div class="project-body">
-              <p class="project-type">DBLAB / Vector Experiment</p>
-              <h3>한국어 리뷰 임베딩·유사도 검색</h3>
-              <p>한국어 영화 리뷰를 Ko-SBERT로 벡터화하고 Parquet에 저장했습니다. Faiss의 Flat·IVFFlat·IVFPQ·HNSW 색인으로 유사 리뷰 검색을 실험했습니다.</p>
-              <div class="tags">
-                <span class="tag">Vector</span><span class="tag">Ratings</span><span class="tag">Recommendation</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>Polars로 리뷰 텍스트를 정제하고 768차원 임베딩과 메타데이터를 함께 저장했습니다.</li>
-                  <li>동일 질의에 대한 색인별 검색 결과와 유사도 점수를 비교했습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>vector.ipynb</span>
-                  <span>ratings_train.txt</span>
-                  <span>ratings_test.txt</span>
-                </div>
-              </details>
-            </div>
+            <h4>구현 범위</h4>
+            <ul>
+              <li>조건을 반영하는 스케줄 생성 엔진</li>
+              <li>결과 검증과 후보 선택 로직</li>
+              <li>Excel 파일 출력</li>
+            </ul>
+            <p class="scope-note">
+              자동화 전후의 실제 업무 시간 절감률은 별도로 측정하지 않았습니다.
+            </p>
           </article>
         </div>
-
-        <div class="fit-note">
-          분석은 단발성 차트 생성이 아니라 데이터셋 구성, 실험 코드, 결과 이미지, 보고서 자료를 함께 남기는 방식으로 수행했습니다.
-        </div>
-      </section>
-
-      <section id="others" class="portfolio-section" data-section="others">
-        <div class="section-head">
-          <div>
-            <h2>기타 프로젝트</h2>
-            <p class="section-note">주 직무와 직접 관련도는 낮지만 문제 해결력, 자동화 감각, 개발 기초를 보여주는 프로젝트입니다.</p>
+        <details class="learning">
+          <summary>추가 학습 기록</summary>
+          <div class="detail-content">
+            <p>
+              Prophet 계절성·휴일·성장 모델 실습, JavaScript·React·Node API
+              실습, 알고리즘·Python 게임·CS 기초 학습을 진행했습니다. Prophet
+              실습은 합성 데이터 기반이며 대표 실측 분석과 구분합니다.
+            </p>
           </div>
-          <span class="section-badge">Additional Work</span>
-        </div>
-
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-body">
-              <p class="project-type">Automation</p>
-              <h3>매니저 스케줄 자동 생성기</h3>
-              <p>복잡한 근무 규칙을 설정, 생성 엔진, 후보 선택, 검증, Excel 출력 모듈로 분리한 Python 자동화 프로젝트입니다.</p>
-              <div class="tags">
-                <span class="tag">Python</span><span class="tag">openpyxl</span><span class="tag">Rules</span><span class="tag">Validation</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>운영 조건을 코드화하고 결과를 Excel로 산출하는 자동화 흐름을 만들었습니다.</li>
-                  <li>검증 모듈을 별도로 두어 결과 품질을 확인했습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>FILE_ROLES.txt</span>
-                  <span>schedule_engine.py</span>
-                  <span>schedule_validation.py</span>
-                </div>
-              </details>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-body">
-              <p class="project-type">Web Practice</p>
-              <h3>JavaScript·React·Node 실습</h3>
-              <p>JavaScript30, React Movie App, GraphQL Movie API, Node.js/Express 실습으로 API와 UI 데이터 흐름의 기본기를 쌓았습니다.</p>
-              <div class="tags">
-                <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">GraphQL</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>백엔드 API와 프론트엔드가 데이터를 주고받는 흐름을 학습했습니다.</li>
-                  <li>데이터 엔지니어링 업무에서 필요한 웹/API 이해의 기반으로 설명할 수 있습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>React Movie App</span>
-                  <span>MovieQL</span>
-                  <span>JavaScript30</span>
-                </div>
-              </details>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-body">
-              <p class="project-type">Programming Foundation</p>
-              <h3>알고리즘·Python 게임·CS 기초</h3>
-              <p>CodeUp, Baekjoon, Pygame, C/Java/Linux/DB 수업 실습을 통해 개발 기초와 문제 해결 루틴을 쌓았습니다.</p>
-              <div class="tags">
-                <span class="tag">Algorithm</span><span class="tag">Python</span><span class="tag">C/Java</span><span class="tag">Linux</span>
-              </div>
-              <details>
-                <summary>주요 내용</summary>
-                <ul class="detail-list">
-                  <li>문제 풀이와 수업 실습을 통해 기본 자료구조, 제어 흐름, 파일 기반 작업에 익숙합니다.</li>
-                  <li>주요 프로젝트를 뒷받침하는 구현 체력으로 설명할 수 있습니다.</li>
-                </ul>
-                <div class="evidence">
-                  <span>CodeUp 100</span>
-                  <span>Baekjoon</span>
-                  <span>Pygame Project</span>
-                </div>
-              </details>
-            </div>
-          </article>
-        </div>
+        </details>
       </section>
-
       <footer>
-        문경호 데이터 엔지니어링·분석 포트폴리오 · <a href="ASSET_SOURCES.md">자료 출처</a>
+        <p>문경호 · 데이터 엔지니어 포트폴리오</p>
+        <div class="links">
+          <a href="https://github.com/k0ho817">GitHub ↗</a
+          ><a
+            href="https://github.com/k0ho817/data-engineering-portfolio/blob/main/ASSET_SOURCES.md"
+            >자료 출처 ↗</a
+          ><a href="#intro">맨 위로 ↑</a>
+        </div>
       </footer>
     </main>
-
-    <dialog class="image-dialog" aria-labelledby="image-title">
-      <header><h2 id="image-title">프로젝트 결과</h2><form method="dialog"><button aria-label="닫기" title="닫기">&#215;</button></form></header>
-      <img alt="">
-      <p class="image-caption"></p>
+    <dialog id="image-dialog" aria-labelledby="image-title">
+      <header>
+        <h2 id="image-title">프로젝트 자료</h2>
+        <form method="dialog">
+          <button aria-label="닫기" title="닫기">×</button>
+        </form>
+      </header>
+      <img alt="" />
+      <p id="image-caption"></p>
+      <a id="image-original" href="#intro">원본 이미지 열기 ↗</a>
     </dialog>
-    <script>
-      const imageDialog = document.querySelector('.image-dialog');
-      document.querySelectorAll('[data-lightbox]').forEach(link => {
-        link.addEventListener('click', event => {
-          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !imageDialog.showModal) return;
-          event.preventDefault();
-          const figure = link.closest('figure');
-          imageDialog.querySelector('img').src = link.href;
-          imageDialog.querySelector('img').alt = link.querySelector('img').alt;
-          imageDialog.querySelector('h2').textContent = figure.querySelector('strong').textContent;
-          imageDialog.querySelector('.image-caption').textContent = figure.querySelector('figcaption').textContent;
-          imageDialog.showModal();
-        });
-      });
-      imageDialog.addEventListener('click', event => {
-        const rect = imageDialog.getBoundingClientRect();
-        if (event.target === imageDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) imageDialog.close();
-      });
-      const buttons = [...document.querySelectorAll(".tab-button")];
-      const sections = [...document.querySelectorAll(".portfolio-section")];
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const target = document.getElementById(button.dataset.target);
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      });
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (!visible) return;
-          buttons.forEach((button) => {
-            button.classList.toggle("active", button.dataset.target === visible.target.id);
-          });
-        },
-        { rootMargin: "-35% 0px -45% 0px", threshold: [0.1, 0.35, 0.6] }
-      );
-
-      sections.forEach((section) => observer.observe(section));
-    </script>
+    <script src="portfolio.js"></script>
   </body>
 </html>
