@@ -31,7 +31,7 @@ DBLAB에서 온프레미스 서버를 관리하고 분산 학습용 데이터 �
 - **따릉이 SQL 마트:** SQLite 차원·사실 모델, 일별 집계 뷰, UPSERT와 입력 검증
 - **Java·MySQL:** 회원가입, 로그인, 학생 정보 조회·수정 기능
 - **Spark SQL:** 주문·상품·고객 조인, GROUP BY와 윈도우 연산
-- **PostgreSQL:** 프로젝트 개발 중
+- **AI life log:** PostgreSQL을 사용하는 데이터 프로젝트 개발 중
 
 ## 기타 프로젝트
 

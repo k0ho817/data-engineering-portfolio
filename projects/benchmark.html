@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="KubeRay 분산학습 프레임워크의 실행 시간과 GPU 메모리를 비교한 벤치마크 사례." />
-  <title>분산학습 벤치마크 | 문경호</title><link rel="stylesheet" href="../portfolio.css" />
+  <title>분산학습 벤치마크 | 문경호</title><link rel="stylesheet" href="../portfolio.css?v=20260921-2" />
 </head>
 <body data-page="project">
   <a class="skip-link" href="#content">본문으로 이동</a>
@@ -15,6 +15,6 @@
     <section class="detail-section"><h2>관측에서 수정까지</h2><dl><div class="incident"><dt>GPU 종료</dt><dd>부하가 높을 때 노드가 종료되는 패턴을 확인하기 위해 nvidia-smi 값을 계속 기록했습니다. 여러 GPU의 동시 전력 사용을 확인한 뒤 power limit을 적용하고 실험 제약에 적었습니다.</dd></div><div class="incident"><dt>NVML index</dt><dd>Ray가 CUDA_VISIBLE_DEVICES를 다시 매핑해 논리 GPU 번호와 NVML 번호가 달라졌습니다. GPU UUID로 장치를 찾아 메모리를 기록하도록 수정했습니다.</dd></div><div class="incident"><dt>선읽기</dt><dd>진단 실행에서 27.1k행·3.5GiB를 읽었습니다. shard 내부 제한을 적용한 실행에서는 12행·약 61KiB로 줄어 입력 범위를 통제했습니다.</dd></div><div class="incident"><dt>비교 제외</dt><dd>TensorFlow MWMS 실행은 collective worker failure 뒤 완료 파일을 만들지 못했습니다. DDP·FSDP와 같은 기준의 지표가 없어 결과 표에서 제외했습니다.</dd></div></dl></section>
     <section class="detail-section"><h2>이 실험에서 배운 기준</h2><p class="callout"><strong>빠른 결과보다 비교 가능한 결과를 남겼습니다.</strong>하드웨어 배치와 완료 기준이 다르면 프레임워크 차이로 해석하지 않았습니다. 실패 로그도 덮어쓰지 않고 원인별로 분류해 다음 실행 조건을 정하는 데 사용했습니다.</p><div class="links"><a class="text-link" href="../assets/benchmark-statistics.csv" download>통계 CSV 내려받기 →</a></div></section>
     <div class="next-project"><a href="ray-pipeline.html">← Ray 데이터 파이프라인</a><a href="sql.html">다음: SQL·데이터베이스 →</a></div>
-  </main><script src="../portfolio.js"></script>
+  </main><script src="../portfolio.js?v=20260921-2"></script>
 </body>
 </html>

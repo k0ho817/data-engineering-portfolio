@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="따릉이 SQL 마트, Java MySQL 학생 관리 시스템, Spark SQL과 PostgreSQL 개발 현황." />
-  <title>SQL·데이터베이스 | 문경호</title><link rel="stylesheet" href="../portfolio.css" />
+  <title>SQL·데이터베이스 | 문경호</title><link rel="stylesheet" href="../portfolio.css?v=20260921-2" />
 </head>
 <body data-page="project">
   <a class="skip-link" href="#content">본문으로 이동</a>
@@ -31,8 +31,8 @@ GROUP BY station_key, substr(hour, 1, 10);</code></pre></section>
     </section>
     <section class="detail-section" id="mysql"><h2>Java·MySQL 학생 관리 시스템</h2><div class="detail-grid"><article class="detail-box"><h3>담당 기능</h3><ul><li>회원가입과 로그인</li><li>학생 정보 조회와 수정</li><li>화면 입력과 DB 접근 계층 연결</li></ul></article><article class="detail-box"><h3>사용한 쿼리</h3><ul><li>PreparedStatement 기반 SELECT</li><li>8개 필드 INSERT</li><li>학번 조건 UPDATE</li></ul></article></div><p>2022년 3인 팀 프로젝트입니다. 팀원이 만든 DB 연결 계층을 사용자 화면과 연결했고, 입력값을 PreparedStatement에 전달한 뒤 조회 결과를 다시 화면에 표시했습니다.</p><p><a class="text-link" href="https://github.com/KNUTPatAMat/Integrated-Information-Student-Management-System">팀 프로젝트 저장소 →</a></p></section>
     <section class="detail-section" id="spark-sql"><h2>Spark SQL·관계 모델링</h2><p>주문·상품·고객 데이터를 결합해 국가별 매출을 GROUP BY로 집계했습니다. 고객별 최신 주문, 순위, LAG와 이동평균은 DataFrame API로 작성하고 실행계획에서 Window, Sort와 Exchange를 확인했습니다.</p><div class="detail-grid"><article class="detail-box"><h3>분석 쿼리</h3><p>국가별 매출, 고객별 최신 주문, 순위와 시계열 비교를 작성했습니다.</p></article><article class="detail-box"><h3>ERD</h3><p>Hotel, Customer, Room, Reservation, Stay 5개 테이블의 기본키와 외래키를 설계했습니다.</p></article></div></section>
-    <section class="detail-section"><h2>PostgreSQL 프로젝트</h2><p class="callout"><strong>개발 중</strong>현재 구현 중인 프로젝트입니다. 코드와 검증 결과가 준비된 범위부터 이 페이지에 추가합니다.</p></section>
+    <section class="detail-section"><h2>AI life log</h2><p class="callout"><strong>개발 중</strong>PostgreSQL을 사용하는 데이터 프로젝트를 개발하고 있습니다.</p></section>
     <div class="next-project"><a href="benchmark.html">← 분산학습 벤치마크</a><a href="aquila.html">다음: Aquila →</a></div>
-  </main><script src="../portfolio.js"></script>
+  </main><script src="../portfolio.js?v=20260921-2"></script>
 </body>
 </html>
