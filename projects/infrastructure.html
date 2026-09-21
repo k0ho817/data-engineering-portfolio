@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="문경호의 DBLAB 온프레미스 서버 인프라 복구 사례." />
+  <title>온프레미스 인프라 복구 | 문경호</title>
+  <link rel="stylesheet" href="../portfolio.css" />
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#content">본문으로 이동</a>
+  <header class="site-header"><a class="brand" href="../index.html"><strong>문경호</strong><span>Data Engineer</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="메뉴 열기"><span aria-hidden="true">☰</span><span class="sr-only">메뉴</span></button><nav id="site-nav" aria-label="주 메뉴"><a href="../index.html#projects">프로젝트</a><a href="../index.html#sql">SQL·DB</a><a href="../index.html#about">소개</a><a href="https://github.com/k0ho817">GitHub</a></nav></header>
+  <main class="project-main" id="content">
+    <section class="project-hero"><a class="back-link" href="../index.html#projects">← 대표 프로젝트</a><p class="eyebrow">DATA INFRASTRUCTURE · 2024~현재</p><h1>문서와 실제 상태가 달랐던<br />연구실 인프라 복구</h1><p class="project-lead">3년 전에 멈춘 문서 대신 장비의 실제 상태를 다시 조사했습니다. 15개 노드의 운영체제, 스토리지, 네트워크와 GPU를 확인하고 11개 노드를 연구에 사용할 수 있는 상태로 복구했습니다.</p><div class="project-tags"><span>Linux</span><span>GPU</span><span>10GbE</span><span>NVIDIA MIG</span><span>운영 문서</span></div></section>
+    <section class="detail-section"><h2>시작할 때의 상황</h2><div class="detail-grid"><article class="detail-box"><h3>남아 있던 정보</h3><p>마지막 수정이 약 3년 전인 GitHub 문서 한 개가 인수인계 자료의 전부였습니다. 문서의 IP와 장비 상태는 실제 서버실과 달랐습니다.</p></article><article class="detail-box"><h3>직접 확인한 상태</h3><p>모니터를 장비에 연결해 부팅 여부부터 확인했습니다. 15개 노드 가운데 약 70%는 바로 연구에 사용할 수 없는 상태였습니다.</p></article></div></section>
+    <section class="detail-section"><h2>조사와 복구 순서</h2><ol class="decision-flow"><li><strong>현장 조사</strong>전원·부팅·디스크 확인</li><li><strong>상태표 작성</strong>노드별 OS·GPU 기록</li><li><strong>원인 분리</strong>스토리지·네트워크 진단</li><li><strong>복구</strong>OS·IP·GPU 재구성</li><li><strong>공유</strong>Notion 문서와 Slack</li></ol></section>
+    <section class="detail-section"><h2>현재 구성</h2><p>가용 노드를 10GbE로 연결하고 역할별로 관리했습니다. 아래 구성도는 공개 범위에 맞춰 실제 노드 이름과 IP를 역할 단위로 바꾼 것입니다.</p><div class="topology" role="img" aria-label="스토리지 및 관리 노드가 10기가비트 이더넷을 통해 GPU 학습 노드와 연결된 구성"><div class="topology-group"><h3>Storage &amp; Control</h3><ul><li>공유 데이터 저장</li><li>Kubernetes 제어</li><li>실험 산출물 보관</li></ul></div><div class="topology-link">10GbE<br />Network</div><div class="topology-group"><h3>GPU Workers</h3><ul><li>A100 MIG 노드</li><li>RTX 3090 학습 노드</li><li>분산 학습 worker</li></ul></div></div></section>
+    <section class="detail-section"><h2>GPU09 장애 진단</h2><dl><div class="incident"><dt>증상</dt><dd>RTX 3090 4장이 장착된 노드가 수년간 사용되지 못하고 있었습니다.</dd></div><div class="incident"><dt>첫 가설</dt><dd>Linux 운영체제 문제로 보고 재설치를 시도했습니다.</dd></div><div class="incident"><dt>확인한 원인</dt><dd>설치 과정에서 SSD가 Read Only 상태로 바뀐 것을 확인했습니다.</dd></div><div class="incident"><dt>임시 복구</dt><dd>핫스왑 HDD에 운영체제를 설치해 먼저 노드를 사용할 수 있게 했습니다.</dd></div><div class="incident"><dt>최종 조치</dt><dd>새 SSD를 구매해 교체하고 GPU 학습 노드로 다시 편입했습니다.</dd></div></dl></section>
+    <section class="detail-section"><h2>결과와 남긴 것</h2><div class="evidence-row"><div><strong>11 / 15</strong><span>사용 가능 상태로 복구한 노드</span></div><div><strong>10GbE</strong><span>가용 노드 네트워크</span></div><div><strong>MIG</strong><span>A100 자원 분할 구성</span></div></div><p class="callout"><strong>운영 결과도 산출물로 남겼습니다.</strong>노드별 상태와 접속 방법, 변경 사항을 Notion에 기록하고 Slack으로 공유했습니다. 이후 장비를 바꿀 때 같은 문서를 계속 갱신했습니다.</p></section>
+    <div class="next-project"><a href="../index.html">← 포트폴리오 홈</a><a href="ray-pipeline.html">다음: Ray 데이터 파이프라인 →</a></div>
+  </main>
+  <script src="../portfolio.js"></script>
+</body>
+</html>

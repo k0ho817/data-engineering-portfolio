@@ -1,95 +1,57 @@
-const dialog = document.getElementById("image-dialog");
-const sqlTabs = [...document.querySelectorAll('[role="tab"]')];
+const navToggle = document.querySelector(".nav-toggle");
+const navigation = document.getElementById("site-nav");
+
+if (navToggle && navigation) {
+  navToggle.addEventListener("click", () => {
+    const open = navigation.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.title = open ? "메뉴 닫기" : "메뉴 열기";
+  });
+  navigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navigation.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+const printButton = document.getElementById("print-page");
+if (printButton) printButton.addEventListener("click", () => window.print());
+
+const tabs = [...document.querySelectorAll('[role="tab"]')];
 function activateTab(tab) {
-  sqlTabs.forEach((item) => {
+  tabs.forEach((item) => {
     const selected = item === tab;
     item.setAttribute("aria-selected", String(selected));
     item.tabIndex = selected ? 0 : -1;
-    document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+    const panel = document.getElementById(item.getAttribute("aria-controls"));
+    if (panel) panel.hidden = !selected;
   });
 }
-sqlTabs.forEach((tab, index) => {
+
+tabs.forEach((tab, index) => {
   tab.addEventListener("click", () => activateTab(tab));
   tab.addEventListener("keydown", (event) => {
     let next;
-    if (event.key === "ArrowRight") next = (index + 1) % sqlTabs.length;
-    else if (event.key === "ArrowLeft") next = (index - 1 + sqlTabs.length) % sqlTabs.length;
+    if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+    else if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
     else if (event.key === "Home") next = 0;
-    else if (event.key === "End") next = sqlTabs.length - 1;
+    else if (event.key === "End") next = tabs.length - 1;
     else return;
     event.preventDefault();
-    activateTab(sqlTabs[next]);
-    sqlTabs[next].focus();
+    activateTab(tabs[next]);
+    tabs[next].focus();
   });
 });
-document.querySelectorAll("[data-lightbox]").forEach((link) => {
-  link.addEventListener("click", (event) => {
-    if (
-      event.ctrlKey ||
-      event.metaKey ||
-      event.shiftKey ||
-      event.altKey ||
-      !dialog.showModal
-    )
-      return;
-    event.preventDefault();
-    const image = link.querySelector("img");
-    dialog.querySelector("img").src = link.href;
-    dialog.querySelector("img").alt = image.alt;
-    document.getElementById("image-title").textContent = link
-      .closest("article")
-      .querySelector("h3").textContent;
-    document.getElementById("image-caption").textContent = link
-      .closest("figure")
-      .querySelector("figcaption").textContent;
-    document.getElementById("image-original").href = link.href;
-    dialog.showModal();
-  });
-});
-dialog.addEventListener("click", (event) => {
-  const box = dialog.getBoundingClientRect();
-  if (
-    event.target === dialog &&
-    (event.clientX < box.left ||
-      event.clientX > box.right ||
-      event.clientY < box.top ||
-      event.clientY > box.bottom)
-  )
-    dialog.close();
-});
-const navigation = [...document.querySelectorAll("nav a")];
-const observer = new IntersectionObserver(
-  (entries) => {
-    const current = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!current) return;
-    navigation.forEach((link) => {
-      if (link.hash === "#" + current.target.id)
-        link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
-    });
-  },
-  { rootMargin: "-15% 0px -55% 0px" },
-);
-document
-  .querySelectorAll(".portfolio-section")
-  .forEach((section) => observer.observe(section));
+
 let printState = [];
 window.addEventListener("beforeprint", () => {
   printState = [...document.querySelectorAll("details")].map((element) => [
     element,
     element.open,
   ]);
-  printState.forEach(([element]) => {
-    element.open = true;
-  });
+  printState.forEach(([element]) => { element.open = true; });
 });
-window.addEventListener("afterprint", () =>
-  printState.forEach(([element, open]) => {
-    element.open = open;
-  }),
-);
-document
-  .getElementById("print-page")
-  .addEventListener("click", () => window.print());
+window.addEventListener("afterprint", () => {
+  printState.forEach(([element, open]) => { element.open = open; });
+});

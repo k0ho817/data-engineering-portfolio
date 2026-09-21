@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="KubeRay 분산학습 프레임워크의 실행 시간과 GPU 메모리를 비교한 벤치마크 사례." />
+  <title>분산학습 벤치마크 | 문경호</title><link rel="stylesheet" href="../portfolio.css" />
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#content">본문으로 이동</a>
+  <header class="site-header"><a class="brand" href="../index.html"><strong>문경호</strong><span>Data Engineer</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="메뉴 열기"><span aria-hidden="true">☰</span><span class="sr-only">메뉴</span></button><nav id="site-nav" aria-label="주 메뉴"><a href="../index.html#projects">프로젝트</a><a href="../index.html#sql">SQL·DB</a><a href="../index.html#about">소개</a><a href="https://github.com/k0ho817">GitHub</a></nav></header>
+  <main class="project-main" id="content">
+    <section class="project-hero"><a class="back-link" href="../index.html#projects">← 대표 프로젝트</a><p class="eyebrow">BENCHMARK · KUBERAY · 2026</p><h1>비교 조건부터 다시 확인한<br />분산학습 벤치마크</h1><p class="project-lead">같은 이름의 GPU를 사용해도 노드별 환경과 네트워크 조건은 달랐습니다. GPU 배치, 소프트웨어 환경과 완료 기준을 맞춘 뒤 실행 시간과 메모리를 기록했습니다.</p><div class="project-tags"><span>Ray Train</span><span>Ray Data</span><span>DDP</span><span>FSDP2</span><span>NVML</span></div></section>
+    <section class="detail-section"><h2>공정한 비교를 위한 기준</h2><div class="detail-grid"><article class="detail-box"><h3>환경 통일</h3><p>NVIDIA driver와 Docker 이미지를 맞추고 PyTorch, CUDA runtime과 라이브러리 버전을 기록했습니다. 호스트 OS 차이는 실험 조건에 남겼습니다.</p></article><article class="detail-box"><h3>대칭 GPU 배치</h3><p>gpu08 2개와 gpu09 2개를 사용하는 2+2 구성을 주 실험으로 정했습니다. 노드당 GPU 수가 다른 2+4 결과는 별도 운영 사례로 분리했습니다.</p></article><article class="detail-box"><h3>완료 기준</h3><p>RUN_END와 결과 파일이 남은 성공 실행만 집계했습니다. TensorFlow MWMS처럼 완료 산출물이 없는 실행은 정량 비교에서 제외했습니다.</p></article><article class="detail-box"><h3>같이 기록한 지표</h3><p>외부 wall-time, step time, 데이터 대기, PyTorch allocated·reserved와 GPU UUID 기반 NVML 메모리를 저장했습니다.</p></article></div></section>
+    <section class="detail-section"><h2>QLoRA 반복 실행 결과</h2><figure class="result-figure"><img src="../assets/qlora-wall-time.png" alt="DataLoader와 Ray Data, DDP와 FSDP2 네 조건의 외부 실행 시간과 95퍼센트 신뢰구간" width="1800" height="828" /><figcaption>대칭 2+2 GPU 조건의 성공 실행. Ray Data FSDP2는 외부 타이머가 남은 3회 기준</figcaption></figure><table class="comparison-table"><thead><tr><th>조건</th><th>평균 외부 시간</th><th>표본 수</th></tr></thead><tbody><tr><td>DDP · DataLoader</td><td>88.20초</td><td>5</td></tr><tr><td>DDP · Ray Data</td><td>90.80초</td><td>5</td></tr><tr><td>FSDP2 · DataLoader</td><td>581.60초</td><td>5</td></tr><tr><td>FSDP2 · Ray Data</td><td>574.33초</td><td>3</td></tr></tbody></table></section>
+    <section class="detail-section"><h2>관측에서 수정까지</h2><dl><div class="incident"><dt>GPU 종료</dt><dd>부하가 높을 때 노드가 종료되는 패턴을 확인하기 위해 nvidia-smi 값을 계속 기록했습니다. 여러 GPU의 동시 전력 사용을 확인한 뒤 power limit을 적용하고 실험 제약에 적었습니다.</dd></div><div class="incident"><dt>NVML index</dt><dd>Ray가 CUDA_VISIBLE_DEVICES를 다시 매핑해 논리 GPU 번호와 NVML 번호가 달라졌습니다. GPU UUID로 장치를 찾아 메모리를 기록하도록 수정했습니다.</dd></div><div class="incident"><dt>선읽기</dt><dd>진단 실행에서 27.1k행·3.5GiB를 읽었습니다. shard 내부 제한을 적용한 실행에서는 12행·약 61KiB로 줄어 입력 범위를 통제했습니다.</dd></div><div class="incident"><dt>비교 제외</dt><dd>TensorFlow MWMS 실행은 collective worker failure 뒤 완료 파일을 만들지 못했습니다. DDP·FSDP와 같은 기준의 지표가 없어 결과 표에서 제외했습니다.</dd></div></dl></section>
+    <section class="detail-section"><h2>이 실험에서 배운 기준</h2><p class="callout"><strong>빠른 결과보다 비교 가능한 결과를 남겼습니다.</strong>하드웨어 배치와 완료 기준이 다르면 프레임워크 차이로 해석하지 않았습니다. 실패 로그도 덮어쓰지 않고 원인별로 분류해 다음 실행 조건을 정하는 데 사용했습니다.</p><div class="links"><a class="text-link" href="../assets/benchmark-statistics.csv" download>통계 CSV 내려받기 →</a></div></section>
+    <div class="next-project"><a href="ray-pipeline.html">← Ray 데이터 파이프라인</a><a href="sql.html">다음: SQL·데이터베이스 →</a></div>
+  </main><script src="../portfolio.js"></script>
+</body>
+</html>

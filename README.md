@@ -2,19 +2,43 @@
 
 [포트폴리오 사이트](https://k0ho817.github.io/data-engineering-portfolio/)
 
-## 대표 내용
+## 소개
 
-1. SQL·데이터 모델링: 따릉이 SQL 마트, Java·MySQL 팀 프로젝트, Spark SQL·ERD 학습.
-2. 데이터 파이프라인: FineWeb 입력 표준화, 센서 데이터 정제, Spark ImageNet 전처리.
-3. 연구·협업: DBLAB 분산 실행 비교, 벡터 검색 실험, Aquila, 스케줄 자동화.
+DBLAB에서 온프레미스 서버를 관리하고 분산 학습용 데이터 파이프라인을 구축했습니다. 로그와 지표로 문제를 확인하고, 해결 과정은 코드와 문서로 남기는 방식으로 일합니다.
 
-2026-09-21: SQL과 데이터 품질 내용을 보강했습니다. SQL 자료 탭은 클릭하거나 좌우 방향키, Home, End 키로 전환할 수 있습니다.
+문제 해결 순서:
 
-[DBLAB 상세 기록](reports/dblab.md) · [SQL 구현과 검증](pipeline/README.md) · [자료 출처](ASSET_SOURCES.md)
+`탐구 → 실행 → 관측 → 검증 → 해결 → 기록·공유`
 
-## 재현
+## 대표 프로젝트
 
-외부 라이브러리나 개발 서버 없이 `index.html`만으로 실행되는 정적 사이트입니다.
+1. **온프레미스 인프라 복구**
+   - 15개 노드의 실제 상태 조사
+   - 11개 노드 복구
+   - A100 MIG 구성과 가용 노드 10GbE 연결
+   - 운영 현황 문서화와 공유
+2. **Ray 데이터·학습 파이프라인**
+   - ImageNet 원본과 라벨을 Parquet로 통합
+   - NFS, Ray Data, Ray Train으로 이어지는 데이터 공급 경로 구성
+   - shard 편차, PNG 디코딩 비용과 선읽기 범위 점검
+3. **분산학습 벤치마크**
+   - 대칭 2+2 GPU 배치와 공통 실행 환경 적용
+   - DDP, FSDP2, DataLoader, Ray Data 반복 비교
+   - 외부 시간, step 구간, PyTorch·NVML 메모리 기록
+
+## SQL·데이터베이스
+
+- **따릉이 SQL 마트:** SQLite 차원·사실 모델, 일별 집계 뷰, UPSERT와 입력 검증
+- **Java·MySQL:** 회원가입, 로그인, 학생 정보 조회·수정 기능
+- **Spark SQL:** 주문·상품·고객 조인, GROUP BY와 윈도우 연산
+- **PostgreSQL:** 프로젝트 개발 중
+
+## 기타 프로젝트
+
+- **Aquila:** 탑다운 사람 데이터셋, YOLOv8n, DDP 학습과 Raspberry Pi 추론 조건 조정
+- **벡터 검색:** 199,992개 리뷰의 768차원 임베딩과 Faiss·Milvus 색인 실험
+
+## 확인
 
 ```sh
 python3 pipeline/load.py assets/bike-hourly-source.csv --output assets
@@ -23,4 +47,4 @@ python3 tests/verify_site.py
 node tests/interaction.test.cjs
 ```
 
-따릉이 SQL 마트는 기존 분석 데이터를 바탕으로 2026-09-16에 구현했습니다. 브라우저에서 인쇄하거나 PDF로 저장하면 접어 둔 상세 내용도 함께 출력됩니다.
+외부 라이브러리나 개발 서버 없이 `index.html`로 실행되는 정적 사이트입니다.

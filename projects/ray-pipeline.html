@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ImageNet과 Ray Data, Ray Train을 연결한 데이터·학습 파이프라인 사례." />
+  <title>Ray 데이터·학습 파이프라인 | 문경호</title><link rel="stylesheet" href="../portfolio.css" />
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#content">본문으로 이동</a>
+  <header class="site-header"><a class="brand" href="../index.html"><strong>문경호</strong><span>Data Engineer</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="메뉴 열기"><span aria-hidden="true">☰</span><span class="sr-only">메뉴</span></button><nav id="site-nav" aria-label="주 메뉴"><a href="../index.html#projects">프로젝트</a><a href="../index.html#sql">SQL·DB</a><a href="../index.html#about">소개</a><a href="https://github.com/k0ho817">GitHub</a></nav></header>
+  <main class="project-main" id="content">
+    <section class="project-hero"><a class="back-link" href="../index.html#projects">← 대표 프로젝트</a><p class="eyebrow">DATA PIPELINE · DBLAB</p><h1>ImageNet 데이터에서<br />분산 학습 worker까지</h1><p class="project-lead">원본 이미지와 라벨 정보를 Parquet로 통합하고 Ray Data의 전처리 결과를 Ray Train worker에 공급했습니다. 저장 장치부터 GPU까지 이어지는 처리율을 한 흐름으로 확인한 프로젝트입니다.</p><div class="project-tags"><span>NFS</span><span>Ray Data</span><span>Parquet</span><span>Ray Train</span><span>Kubernetes</span></div></section>
+    <section class="detail-section"><h2>왜 이 구조를 선택했나</h2><div class="detail-grid"><article class="detail-box"><h3>NFS</h3><p>여러 GPU 노드에서 같은 ImageNet 원본과 결과를 읽어야 했습니다. 당시 환경에서 가장 빠르게 공유 저장소를 구성할 수 있는 NFS를 선택했습니다.</p></article><article class="detail-box"><h3>Parquet</h3><p>이미지 바이트, 정답 라벨, 원본 경로와 WNID를 한 행에 저장했습니다. PyTorch와 TensorFlow 실험이 같은 전처리 결과를 읽도록 입력을 통일했습니다.</p></article></div></section>
+    <section class="detail-section"><h2>데이터 흐름</h2><div class="architecture" role="img" aria-label="ImageNet 원본이 Parquet 전처리와 Ray Data를 거쳐 Ray Train worker에 전달되고 지표로 저장되는 흐름"><div class="stage"><strong>ImageNet</strong><span>JPEG · XML</span></div><div class="stage"><strong>Preprocess</strong><span>224×224 · PNG bytes</span></div><div class="stage"><strong>Parquet</strong><span>NFS 공유 입력</span></div><div class="stage"><strong>Ray Data</strong><span>decode · batch</span></div><div class="stage"><strong>Ray Train</strong><span>DDP · FSDP</span></div></div><figure class="result-figure"><img src="../assets/imagenet-pipeline.png" alt="ImageNet 전처리부터 Ray Train 결과 보고서까지 연결한 원본 파이프라인" width="8044" height="2150" /><figcaption>2026년 4월에 작성한 실제 파이프라인 설계도</figcaption></figure></section>
+    <section class="detail-section"><h2>처리 과정에서 확인한 문제</h2><dl><div class="incident"><dt>완료 집계</dt><dd>전처리 프로세스가 끝났더라도 모든 shard가 정상인지 알 수 없었습니다. 파일 존재 여부와 함께 행 수와 완료 상태를 확인하도록 점검 항목을 늘렸습니다.</dd></div><div class="incident"><dt>shard 편차</dt><dd>Parquet shard마다 행 수가 달랐고 worker별 batch 수도 달라졌습니다. 파티션과 worker 단위의 처리량을 따로 기록했습니다.</dd></div><div class="incident"><dt>CPU 비용</dt><dd>PNG 디코딩이 학습 중 CPU에서 반복됐습니다. GPU 사용률만 보지 않고 데이터 대기와 디코딩 구간을 함께 확인했습니다.</dd></div><div class="incident"><dt>공급 균형</dt><dd>NFS 공급보다 전처리가 빠르면 worker가 입력을 기다렸고, 학습이 느릴 때는 선읽기 데이터가 캐시에 쌓였습니다. shard 내부 제한과 캐시 사용량을 조정했습니다.</dd></div></dl></section>
+    <section class="detail-section"><h2>처리한 데이터</h2><div class="evidence-row"><div><strong>1,281,167</strong><span>ImageNet train 이미지</span></div><div><strong>50,000</strong><span>validation 이미지</span></div><div><strong>224×224</strong><span>학습 입력 크기</span></div></div><p class="callout"><strong>성능은 가장 빠른 컴포넌트 하나로 결정되지 않았습니다.</strong>스토리지, 네트워크, 데이터 로딩, 전처리와 학습 속도가 맞아야 worker가 쉬지 않고 데이터를 받을 수 있었습니다.</p></section>
+    <div class="next-project"><a href="infrastructure.html">← 인프라 복구</a><a href="benchmark.html">다음: 분산학습 벤치마크 →</a></div>
+  </main><script src="../portfolio.js"></script>
+</body>
+</html>
