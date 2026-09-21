@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="따릉이 SQL 마트, Java MySQL 학생 관리 시스템, Spark SQL과 PostgreSQL 개발 현황." />
-  <title>SQL·데이터베이스 | 문경호</title><link rel="stylesheet" href="../portfolio.css?v=20260921-2" />
+  <title>SQL·데이터베이스 | 문경호</title><link rel="stylesheet" href="../portfolio.css?v=20260921-3" />
 </head>
 <body data-page="project">
   <a class="skip-link" href="#content">본문으로 이동</a>
@@ -33,6 +33,6 @@ GROUP BY station_key, substr(hour, 1, 10);</code></pre></section>
     <section class="detail-section" id="spark-sql"><h2>Spark SQL·관계 모델링</h2><p>주문·상품·고객 데이터를 결합해 국가별 매출을 GROUP BY로 집계했습니다. 고객별 최신 주문, 순위, LAG와 이동평균은 DataFrame API로 작성하고 실행계획에서 Window, Sort와 Exchange를 확인했습니다.</p><div class="detail-grid"><article class="detail-box"><h3>분석 쿼리</h3><p>국가별 매출, 고객별 최신 주문, 순위와 시계열 비교를 작성했습니다.</p></article><article class="detail-box"><h3>ERD</h3><p>Hotel, Customer, Room, Reservation, Stay 5개 테이블의 기본키와 외래키를 설계했습니다.</p></article></div></section>
     <section class="detail-section"><h2>AI life log</h2><p class="callout"><strong>개발 중</strong>PostgreSQL을 사용하는 데이터 프로젝트를 개발하고 있습니다.</p></section>
     <div class="next-project"><a href="benchmark.html">← 분산학습 벤치마크</a><a href="aquila.html">다음: Aquila →</a></div>
-  </main><script src="../portfolio.js?v=20260921-2"></script>
+  </main><script src="../portfolio.js?v=20260921-3"></script>
 </body>
 </html>

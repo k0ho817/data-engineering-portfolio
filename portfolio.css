@@ -82,12 +82,6 @@ main { width: min(100%, var(--max)); margin: 0 auto; padding: 0 28px; }
 .button.primary { color: var(--white); background: var(--green); }
 .button.primary:hover { background: var(--green-dark); }
 .button.secondary { color: var(--green); background: var(--white); }
-.metric-row { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 48px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.metric-row > div { min-width: 0; padding: 18px 18px 18px 0; }
-.metric-row > div + div { padding-left: 18px; border-left: 1px solid var(--line); }
-.metric-row dt { color: var(--green-dark); font: 760 23px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
-.metric-row dd { margin-top: 6px; color: var(--muted); font-size: 13px; }
-
 .method-band { display: grid; grid-template-columns: 200px 1fr; gap: 34px; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--line); }
 .method-band h2 { font-size: 22px; }
 .method-flow { display: grid; grid-template-columns: repeat(6, 1fr); padding: 0; list-style: none; }
@@ -231,9 +225,6 @@ code { font-family: inherit; }
 
 @media (max-width: 880px) {
   h1 { font-size: 38px; }
-  .metric-row { grid-template-columns: repeat(2, 1fr); }
-  .metric-row > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
-  .metric-row > div:nth-child(4) { border-top: 1px solid var(--line); }
   .method-band { grid-template-columns: 1fr; }
   .case-feature { grid-template-columns: 52px 1fr; }
   .infra-summary { grid-column: 2; }
@@ -264,10 +255,6 @@ code { font-family: inherit; }
   .hero-copy { font-size: 16px; }
   .contact-list { grid-template-columns: 1fr; gap: 8px; }
   .hero-actions .button { width: 100%; }
-  .metric-row { margin-top: 34px; }
-  .metric-row > div { padding: 15px 8px 15px 0; }
-  .metric-row > div + div { padding-left: 12px; }
-  .metric-row dt { font-size: 19px; }
   .method-flow { grid-template-columns: repeat(3, 1fr); }
   .method-flow li:nth-child(4) { border-left: 0; }
   .method-flow li:nth-child(n+4) { border-top: 1px solid var(--line); }
