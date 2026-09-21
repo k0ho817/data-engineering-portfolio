@@ -8,7 +8,7 @@
 2. 데이터 파이프라인: FineWeb 입력 표준화, 센서 데이터 정제, Spark ImageNet 전처리.
 3. 연구·협업: DBLAB 분산 실행 비교, 벡터 검색 실험, Aquila, 스케줄 자동화.
 
-2026-09-21: SQL과 데이터 품질을 먼저 배치하도록 개편했습니다. SQL 구현·PySpark API·교과 실습·연구실 공동 자료를 구분합니다. SQL 자료 탭은 클릭과 좌우 방향키·Home·End로 전환할 수 있습니다.
+2026-09-21: SQL과 데이터 품질을 중심으로 개편했습니다. SQL 자료 탭은 클릭과 좌우 방향키·Home·End로 전환할 수 있습니다.
 
 [DBLAB 상세 기록](reports/dblab.md) · [SQL 구현과 검증](pipeline/README.md) · [자료 출처](ASSET_SOURCES.md)
 
@@ -23,4 +23,4 @@ python3 tests/verify_site.py
 node tests/interaction.test.cjs
 ```
 
-SQL 확장은 2026-09-16에 Codex와 함께 구현한 별도 포트폴리오 작업입니다. 기존 DBLAB 연구의 당시 성과로 소급하지 않습니다. 브라우저의 인쇄 / PDF 기능에서는 상세 내용을 펼쳐 인쇄합니다.
+따릉이 SQL 마트는 2026-09-16에 기존 분석 데이터를 바탕으로 추가한 확장 구현입니다. 브라우저의 인쇄 / PDF 기능에서는 상세 내용을 펼쳐 인쇄합니다.
