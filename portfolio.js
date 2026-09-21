@@ -1,4 +1,27 @@
 const dialog = document.getElementById("image-dialog");
+const sqlTabs = [...document.querySelectorAll('[role="tab"]')];
+function activateTab(tab) {
+  sqlTabs.forEach((item) => {
+    const selected = item === tab;
+    item.setAttribute("aria-selected", String(selected));
+    item.tabIndex = selected ? 0 : -1;
+    document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+  });
+}
+sqlTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => activateTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    let next;
+    if (event.key === "ArrowRight") next = (index + 1) % sqlTabs.length;
+    else if (event.key === "ArrowLeft") next = (index - 1 + sqlTabs.length) % sqlTabs.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = sqlTabs.length - 1;
+    else return;
+    event.preventDefault();
+    activateTab(sqlTabs[next]);
+    sqlTabs[next].focus();
+  });
+});
 document.querySelectorAll("[data-lightbox]").forEach((link) => {
   link.addEventListener("click", (event) => {
     if (
